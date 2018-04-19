@@ -42,10 +42,10 @@ export class ConferenceApp {
   // the left menu only works after login
   // the login page disables the left menu
   appPages: PageInterface[] = [
-    { title: 'Schedule', name: 'TabsPage', component: TabsPage, tabComponent: SchedulePage, index: 0, icon: 'calendar' },
-    { title: 'Speakers', name: 'TabsPage', component: TabsPage, tabComponent: SpeakerListPage, index: 1, icon: 'contacts' },
-    { title: 'Map', name: 'TabsPage', component: TabsPage, tabComponent: MapPage, index: 2, icon: 'map' },
-    { title: 'About', name: 'TabsPage', component: TabsPage, tabComponent: AboutPage, index: 3, icon: 'information-circle' }
+    { title: 'Security', name: 'TabsPage', component: TabsPage, tabComponent: SchedulePage, index: 0, icon: 'ios-lock' },
+    { title: 'Thermostats', name: 'TabsPage', component: TabsPage, tabComponent: SpeakerListPage, index: 1, icon: 'ios-thermometer' },
+    { title: 'Cameras', name: 'TabsPage', component: TabsPage, tabComponent: MapPage, index: 2, icon: 'ios-videocam' },
+    { title: 'Devices', name: 'TabsPage', component: TabsPage, tabComponent: AboutPage, index: 3, icon: 'ios-git-commit' }
   ];
   loggedInPages: PageInterface[] = [
     { title: 'Account', name: 'AccountPage', component: AccountPage, icon: 'person' },
@@ -73,7 +73,7 @@ export class ConferenceApp {
     this.storage.get('hasSeenTutorial')
       .then((hasSeenTutorial) => {
         if (hasSeenTutorial) {
-          this.rootPage = TabsPage;
+          this.rootPage = LoginPage;
         } else {
           this.rootPage = TutorialPage;
         }
@@ -117,6 +117,7 @@ export class ConferenceApp {
     if (page.logsOut === true) {
       // Give the menu time to close before changing to logged out
       this.userData.logout();
+      this.nav.setRoot(LoginPage);
     }
   }
 

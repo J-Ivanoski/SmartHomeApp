@@ -73,7 +73,7 @@ export class ConferenceApp {
     this.storage.get('hasSeenTutorial')
       .then((hasSeenTutorial) => {
         if (hasSeenTutorial) {
-          this.rootPage = TabsPage;
+          this.rootPage = LoginPage;
         } else {
           this.rootPage = TutorialPage;
         }
@@ -117,6 +117,7 @@ export class ConferenceApp {
     if (page.logsOut === true) {
       // Give the menu time to close before changing to logged out
       this.userData.logout();
+      this.nav.setRoot(LoginPage);
     }
   }
 
