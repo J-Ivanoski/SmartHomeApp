@@ -126,6 +126,7 @@ export class ConferenceApp {
     });
   }
 
+  //All events for login and they are promise to menu
   listenToLoginEvents() {
     this.events.subscribe('user:login', () => {
       this.enableMenu(true);
@@ -140,6 +141,7 @@ export class ConferenceApp {
     });
   }
 
+  //Used events here if loged is show logendInMenu
   enableMenu(loggedIn: boolean) {
     this.menu.enable(loggedIn, 'loggedInMenu');
     this.menu.enable(!loggedIn, 'loggedOutMenu');
