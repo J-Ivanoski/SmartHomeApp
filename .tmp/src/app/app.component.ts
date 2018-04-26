@@ -73,7 +73,7 @@ export class ConferenceApp {
     this.storage.get('hasSeenTutorial')
       .then((hasSeenTutorial) => {
         if (hasSeenTutorial) {
-          this.rootPage = LoginPage;
+          //this.rootPage = LoginPage;
         } else {
           this.rootPage = TutorialPage;
         }
