@@ -27,6 +27,7 @@ import { TutorialPage } from '../pages/tutorial/tutorial';
 import { SupportPage } from '../pages/support/support';
 
 import { ListMasterPage } from '../pages/list-master/list-master';
+import { ItemCreatePage } from '../pages/item-create/item-create';
 
 import { ConferenceData } from '../providers/conference-data';
 import { UserData } from '../providers/user-data';
@@ -50,7 +51,8 @@ import { Devices } from '../providers/devices';
     TabsPage,
     TutorialPage,
     SupportPage,
-    ListMasterPage
+    ListMasterPage,
+    ItemCreatePage
   ],
   imports: [
     BrowserModule,
@@ -66,6 +68,7 @@ import { Devices } from '../providers/devices';
         { component: MapPage, name: 'Map', segment: 'map' },
         { component: AboutPage, name: 'About', segment: 'about' },
         { component: ListMasterPage, name: 'ListMaster', segment: 'list-master' },
+        { component: ItemCreatePage, name: 'ItemCreate', segment: 'item-create' },
         { component: TutorialPage, name: 'Tutorial', segment: 'tutorial' },
         { component: SupportPage, name: 'SupportPage', segment: 'support' },
         { component: LoginPage, name: 'LoginPage', segment: 'login' },
@@ -92,7 +95,8 @@ import { Devices } from '../providers/devices';
     TabsPage,
     TutorialPage,
     SupportPage,
-    ListMasterPage
+    ListMasterPage,
+    ItemCreatePage
   ],
   providers: [
     { provide: ErrorHandler, useClass: IonicErrorHandler },

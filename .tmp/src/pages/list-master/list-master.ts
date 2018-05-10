@@ -3,6 +3,7 @@ import { IonicPage, ModalController, NavController } from 'ionic-angular';
 
 import { Device } from '../../models/device';
 import { Devices } from '../../providers/devices';
+import { ItemCreatePage } from '../../pages/item-create/item-create';
 
 @IonicPage()
 @Component({
@@ -28,7 +29,7 @@ export class ListMasterPage {
    * modal and then adds the new item to our data source if the user created one.
    */
   addItem() {
-    let addModal = this.modalCtrl.create('ItemCreatePage');
+    let addModal = this.modalCtrl.create(ItemCreatePage);
     addModal.onDidDismiss(item => {
       if (item) {
         this.items.add(item);
