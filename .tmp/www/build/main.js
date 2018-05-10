@@ -901,8 +901,9 @@ var TutorialPage = (function () {
     }
     TutorialPage.prototype.startApp = function () {
         var _this = this;
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__tabs_page_tabs_page__["a" /* TabsPage */]).then(function () {
-            _this.storage.set('hasSeenTutorial', 'true');
+        this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__tabs_page_tabs_page__["a" /* TabsPage */]).then(function () {
+            _this.storage.set('hasSeenTutorial', 'true'),
+                _this.storage.set('hasLoggedIn', 'true');
         });
     };
     TutorialPage.prototype.onSlideChangeStart = function (slider) {
@@ -917,7 +918,7 @@ var TutorialPage = (function () {
     };
     TutorialPage.prototype.ionViewDidLeave = function () {
         // enable the root left menu when leaving the tutorial page
-        this.menu.enable(true);
+        this.menu.enable(true, 'loggedInMenu');
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('slides'),
@@ -1414,7 +1415,7 @@ var ConferenceApp = (function () {
         this.storage.get('hasSeenTutorial')
             .then(function (hasSeenTutorial) {
             if (hasSeenTutorial) {
-                //this.rootPage = LoginPage;
+                _this.rootPage = __WEBPACK_IMPORTED_MODULE_6__pages_login_login__["a" /* LoginPage */];
             }
             else {
                 _this.rootPage = __WEBPACK_IMPORTED_MODULE_10__pages_tutorial_tutorial__["a" /* TutorialPage */];
@@ -1435,9 +1436,7 @@ var ConferenceApp = (function () {
         // the nav component was found using @ViewChild(Nav)
         // setRoot on the nav to remove previous pages and only have this page
         // we wouldn't want the back button to show in this scenario
-        if (page.index) {
-            params = { tabIndex: page.index };
-        }
+        // decide which menu items should be hidden by current login status stored in local storage
         // If we are already on tabs just change the selected tab
         // don't setRoot again, this maintains the history stack of the
         // tabs even if changing them from the menu
@@ -1457,8 +1456,12 @@ var ConferenceApp = (function () {
         }
     };
     ConferenceApp.prototype.openTutorial = function () {
-        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_10__pages_tutorial_tutorial__["a" /* TutorialPage */]);
+        var _this = this;
+        this.nav.setRoot(__WEBPACK_IMPORTED_MODULE_10__pages_tutorial_tutorial__["a" /* TutorialPage */]).then(function () {
+            _this.listenToLoginEvents();
+        });
     };
+    //All events for login and they are promise to menu
     ConferenceApp.prototype.listenToLoginEvents = function () {
         var _this = this;
         this.events.subscribe('user:login', function () {
@@ -1471,6 +1474,7 @@ var ConferenceApp = (function () {
             _this.enableMenu(false);
         });
     };
+    //Used events here if loged is show logendInMenu
     ConferenceApp.prototype.enableMenu = function (loggedIn) {
         this.menu.enable(loggedIn, 'loggedInMenu');
         this.menu.enable(!loggedIn, 'loggedOutMenu');

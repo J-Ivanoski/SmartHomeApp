@@ -73,7 +73,7 @@ export class ConferenceApp {
     this.storage.get('hasSeenTutorial')
       .then((hasSeenTutorial) => {
         if (hasSeenTutorial) {
-          //this.rootPage = LoginPage;
+          this.rootPage = LoginPage;
         } else {
           this.rootPage = TutorialPage;
         }
@@ -98,9 +98,8 @@ export class ConferenceApp {
     // the nav component was found using @ViewChild(Nav)
     // setRoot on the nav to remove previous pages and only have this page
     // we wouldn't want the back button to show in this scenario
-    if (page.index) {
-      params = { tabIndex: page.index };
-    }
+    // decide which menu items should be hidden by current login status stored in local storage
+    
 
     // If we are already on tabs just change the selected tab
     // don't setRoot again, this maintains the history stack of the
@@ -113,7 +112,7 @@ export class ConferenceApp {
         console.log(`Didn't set nav root: ${err}`);
       });
     }
-
+    
     if (page.logsOut === true) {
       // Give the menu time to close before changing to logged out
       this.userData.logout();
@@ -122,9 +121,12 @@ export class ConferenceApp {
   }
 
   openTutorial() {
-    this.nav.setRoot(TutorialPage);
+    this.nav.setRoot(TutorialPage).then(()=>{
+      this.listenToLoginEvents();
+    });
   }
 
+  //All events for login and they are promise to menu
   listenToLoginEvents() {
     this.events.subscribe('user:login', () => {
       this.enableMenu(true);
@@ -139,6 +141,7 @@ export class ConferenceApp {
     });
   }
 
+  //Used events here if loged is show logendInMenu
   enableMenu(loggedIn: boolean) {
     this.menu.enable(loggedIn, 'loggedInMenu');
     this.menu.enable(!loggedIn, 'loggedOutMenu');

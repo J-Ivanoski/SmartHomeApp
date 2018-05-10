@@ -20,8 +20,9 @@ var TutorialPage = (function () {
     }
     TutorialPage.prototype.startApp = function () {
         var _this = this;
-        this.navCtrl.push(TabsPage).then(function () {
-            _this.storage.set('hasSeenTutorial', 'true');
+        this.navCtrl.setRoot(TabsPage).then(function () {
+            _this.storage.set('hasSeenTutorial', 'true'),
+                _this.storage.set('hasLoggedIn', 'true');
         });
     };
     TutorialPage.prototype.onSlideChangeStart = function (slider) {
@@ -36,7 +37,7 @@ var TutorialPage = (function () {
     };
     TutorialPage.prototype.ionViewDidLeave = function () {
         // enable the root left menu when leaving the tutorial page
-        this.menu.enable(true);
+        this.menu.enable(true, 'loggedInMenu');
     };
     __decorate([
         ViewChild('slides'),
