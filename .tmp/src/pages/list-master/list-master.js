@@ -16,6 +16,7 @@ var ListMasterPage = (function () {
         this.items = items;
         this.modalCtrl = modalCtrl;
         this.currentItems = this.items.query();
+        console.log(this.currentItems);
     }
     /**
      * The view loaded, let's query our items for the list
@@ -52,7 +53,7 @@ var ListMasterPage = (function () {
     };
     ListMasterPage = __decorate([
         Component({
-            selector: 'page-list-master',template:/*ion-inline-start:"/home/jovan/Projects/Ionic/SmartHomeApp/src/pages/list-master/list-master.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ \'LIST_MASTER_TITLE\' }}</ion-title>\n\n    <ion-buttons end>\n      <button ion-button icon-only (click)="addItem()">\n        <ion-icon name="add"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content>\n\n  <ion-list>\n    <ion-item-sliding *ngFor="let item of currentItems">\n      <button ion-item (click)="openItem(item)">\n        <ion-avatar item-start>\n          <img [src]="item.profilePic" />\n        </ion-avatar>\n        <h2>{{item.name}}</h2>\n        <p>{{item.about}}</p>\n        <ion-note item-end *ngIf="item.note">{{item.note}}</ion-note>\n      </button>\n\n      <ion-item-options>\n        <button ion-button color="danger" (click)="deleteItem(item)">\n          {{ \'DELETE_BUTTON\' }}\n        </button>\n      </ion-item-options>\n    </ion-item-sliding>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/jovan/Projects/Ionic/SmartHomeApp/src/pages/list-master/list-master.html"*/
+            selector: 'page-list-master',template:/*ion-inline-start:"/home/jovan/Projects/Ionic/SmartHomeApp/src/pages/list-master/list-master.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ \'LIST_MASTER_TITLE\' }}</ion-title>\n\n    <ion-buttons end>\n      <button ion-button icon-only (click)="addItem()">\n        <ion-icon name="add"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content>\n\n  <ion-list>\n    <ion-item-sliding *ngFor="let item of currentItems">\n      <ion-item>\n        <ion-avatar item-start>\n          <img [src]="item.profilePic" />\n        </ion-avatar>\n        <ion-label>\n          <h2>{{item.name}}</h2>\n          <p>{{item.about}}</p>\n        </ion-label>\n         <ion-toggle checked="false"></ion-toggle>\n        <ion-note item-end *ngIf="item.note">{{item.note}}</ion-note>\n      </ion-item>\n\n      <ion-item-options>\n        <button ion-button color="danger" (click)="deleteItem(item)">\n          {{ \'DELETE_BUTTON\' }}\n        </button>\n      </ion-item-options>\n    </ion-item-sliding>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/jovan/Projects/Ionic/SmartHomeApp/src/pages/list-master/list-master.html"*/
         }),
         __metadata("design:paramtypes", [NavController, Devices, ModalController])
     ], ListMasterPage);

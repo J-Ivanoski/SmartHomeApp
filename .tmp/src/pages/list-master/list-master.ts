@@ -14,6 +14,7 @@ export class ListMasterPage {
 
   constructor(public navCtrl: NavController, public items: Devices, public modalCtrl: ModalController) {
     this.currentItems = this.items.query();
+    console.log(this.currentItems);
   }
 
   /**

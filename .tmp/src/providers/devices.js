@@ -21,7 +21,7 @@ var Devices = (function () {
             {
                 "name": "Burt Bear",
                 //"profilePic": "assets/img/speakers/bear.jpg",
-                "about": "Burt is a Bear."
+                "about": "Burt is a Bear.",
             },
             {
                 "name": "Charlie Cheetah",

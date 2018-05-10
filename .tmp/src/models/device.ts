@@ -21,5 +21,4 @@ export class Device {
 
 export interface Device {
   [prop: string]: any;
-  
 }
