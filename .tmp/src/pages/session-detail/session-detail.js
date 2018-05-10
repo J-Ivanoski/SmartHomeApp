@@ -39,7 +39,7 @@ var SessionDetailPage = (function () {
     };
     SessionDetailPage = __decorate([
         Component({
-            selector: 'page-session-detail',template:/*ion-inline-start:"/home/jovica/IonicProjects/SmartHomeApp/src/pages/session-detail/session-detail.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title *ngIf="session">{{session.name}}</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <div *ngIf="session">\n    <h1>{{session.name}}</h1>\n    <h4 *ngFor="let speaker of session?.speakers">\n    {{speaker.name}}\n  </h4>\n    <p>\n      {{session.timeStart}} - {{session.timeEnd}}\n    </p>\n    <p>{{session.location}}</p>\n    <p>{{session.description}}</p>\n  </div>\n</ion-content>\n'/*ion-inline-end:"/home/jovica/IonicProjects/SmartHomeApp/src/pages/session-detail/session-detail.html"*/
+            selector: 'page-session-detail',template:/*ion-inline-start:"/home/jovan/Projects/Ionic/SmartHomeApp/src/pages/session-detail/session-detail.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title *ngIf="session">{{session.name}}</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <div *ngIf="session">\n    <h1>{{session.name}}</h1>\n    <h4 *ngFor="let speaker of session?.speakers">\n    {{speaker.name}}\n  </h4>\n    <p>\n      {{session.timeStart}} - {{session.timeEnd}}\n    </p>\n    <p>{{session.location}}</p>\n    <p>{{session.description}}</p>\n  </div>\n</ion-content>\n'/*ion-inline-end:"/home/jovan/Projects/Ionic/SmartHomeApp/src/pages/session-detail/session-detail.html"*/
         }),
         __metadata("design:paramtypes", [ConferenceData,
             NavParams])

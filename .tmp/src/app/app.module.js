@@ -26,8 +26,10 @@ import { SpeakerListPage } from '../pages/speaker-list/speaker-list';
 import { TabsPage } from '../pages/tabs-page/tabs-page';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 import { SupportPage } from '../pages/support/support';
+import { ListMasterPage } from '../pages/list-master/list-master';
 import { ConferenceData } from '../providers/conference-data';
 import { UserData } from '../providers/user-data';
+import { Devices } from '../providers/devices';
 var AppModule = (function () {
     function AppModule() {
     }
@@ -48,7 +50,8 @@ var AppModule = (function () {
                 SpeakerListPage,
                 TabsPage,
                 TutorialPage,
-                SupportPage
+                SupportPage,
+                ListMasterPage
             ],
             imports: [
                 BrowserModule,
@@ -63,6 +66,7 @@ var AppModule = (function () {
                         { component: SpeakerDetailPage, name: 'SpeakerDetail', segment: 'speakerDetail/:speakerId' },
                         { component: MapPage, name: 'Map', segment: 'map' },
                         { component: AboutPage, name: 'About', segment: 'about' },
+                        { component: ListMasterPage, name: 'ListMaster', segment: 'list-master' },
                         { component: TutorialPage, name: 'Tutorial', segment: 'tutorial' },
                         { component: SupportPage, name: 'SupportPage', segment: 'support' },
                         { component: LoginPage, name: 'LoginPage', segment: 'login' },
@@ -88,14 +92,16 @@ var AppModule = (function () {
                 SpeakerListPage,
                 TabsPage,
                 TutorialPage,
-                SupportPage
+                SupportPage,
+                ListMasterPage
             ],
             providers: [
                 { provide: ErrorHandler, useClass: IonicErrorHandler },
                 ConferenceData,
                 UserData,
                 InAppBrowser,
-                SplashScreen
+                SplashScreen,
+                Devices
             ]
         })
     ], AppModule);
