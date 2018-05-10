@@ -15,9 +15,11 @@ import { TutorialPage } from '../pages/tutorial/tutorial';
 import { SchedulePage } from '../pages/schedule/schedule';
 import { SpeakerListPage } from '../pages/speaker-list/speaker-list';
 import { SupportPage } from '../pages/support/support';
-
 import { ConferenceData } from '../providers/conference-data';
 import { UserData } from '../providers/user-data';
+import { Devices } from '../providers/devices';
+
+import { ListMasterPage } from '../pages/list-master/list-master';
 
 export interface PageInterface {
   title: string;
@@ -45,7 +47,7 @@ export class ConferenceApp {
     { title: 'Security', name: 'TabsPage', component: TabsPage, tabComponent: SchedulePage, index: 0, icon: 'ios-lock' },
     { title: 'Thermostats', name: 'TabsPage', component: TabsPage, tabComponent: SpeakerListPage, index: 1, icon: 'ios-thermometer' },
     { title: 'Cameras', name: 'TabsPage', component: TabsPage, tabComponent: MapPage, index: 2, icon: 'ios-videocam' },
-    { title: 'Devices', name: 'TabsPage', component: TabsPage, tabComponent: AboutPage, index: 3, icon: 'ios-git-commit' }
+    { title: 'Devices', name: 'TabsPage', component: TabsPage, tabComponent: ListMasterPage, index: 3, icon: 'ios-git-commit' }
   ];
   loggedInPages: PageInterface[] = [
     { title: 'Account', name: 'AccountPage', component: AccountPage, icon: 'person' },
@@ -99,7 +101,7 @@ export class ConferenceApp {
     // setRoot on the nav to remove previous pages and only have this page
     // we wouldn't want the back button to show in this scenario
     // decide which menu items should be hidden by current login status stored in local storage
-    
+
 
     // If we are already on tabs just change the selected tab
     // don't setRoot again, this maintains the history stack of the
@@ -112,7 +114,7 @@ export class ConferenceApp {
         console.log(`Didn't set nav root: ${err}`);
       });
     }
-    
+
     if (page.logsOut === true) {
       // Give the menu time to close before changing to logged out
       this.userData.logout();
