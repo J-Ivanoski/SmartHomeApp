@@ -22,4 +22,64 @@ page-schedule {
      padding-left: 10px;
    }
   }
+
+  ion-item-options[side=left] > .fit-left{
+    padding:0 8em;
+    font-size:20px;
+    text-transform: capitalize;
+  }
+
+  ion-item-options[side=right] > .fit-right{
+    padding:0 9em;
+    font-size:20px;
+    text-transform: capitalize;
+  }
+
+  .float-left{
+    padding-top:7.5em;
+    float:left;
+  }
+
+  .float-right{
+    margin-top:7.5em;
+    float:right; 
+  }
+
+  .check {
+    display:box; 
+    margin:0 auto;
+    text-align: center;
+  }
+  .check > img[class=cls] {
+    padding-top:1em;
+    width:17.2em;
+  }
+  
+  .text-center {
+    text-align:center;
+  }
+
+  ion-col[class=text-center] > p {
+    font-size:18px;
+  }
+
+  div[class=text-center] > p{
+    text-transform: capitalize;
+    margin-bottom:-0.1em;
+    font-size:15px;
+
+  }
+
+  div[class=text-center] > button {
+    text-transform: capitalize;
+  }
+
+ .clui{
+    padding:0 0.3em;
+  }
+
+  .no-margin-top{
+    margin-top:-1.5em;
+  }
+
 }

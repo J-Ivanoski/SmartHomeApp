@@ -7,7 +7,7 @@ export class Devices {
   items: Device[] = [];
 
   defaultItem: any = {
-    "name": "Burt Bear",
+    "DeviceName": "Burt Bear",
     //"profilePic": "assets/img/speakers/bear.jpg",
     "about": "Burt is a Bear.",
   };
@@ -15,37 +15,37 @@ export class Devices {
   constructor() {
     let items = [
       {
-        "name": "Burt Bear",
+        "DeviceName": "Burt Bear",
         //"profilePic": "assets/img/speakers/bear.jpg",
         "about": "Burt is a Bear.",
       },
       {
-        "name": "Charlie Cheetah",
+        "DeviceName": "Charlie Cheetah",
         //"profilePic": "assets/img/speakers/cheetah.jpg",
         "about": "Charlie is a Cheetah."
       },
       {
-        "name": "Donald Duck",
+        "DeviceName": "Donald Duck",
         //"profilePic": "assets/img/speakers/duck.jpg",
         "about": "Donald is a Duck."
       },
       {
-        "name": "Eva Eagle",
+        "DeviceName": "Eva Eagle",
         //"profilePic": "assets/img/speakers/eagle.jpg",
         "about": "Eva is an Eagle."
       },
       {
-        "name": "Ellie Elephant",
+        "DeviceName": "Ellie Elephant",
         //"profilePic": "assets/img/speakers/elephant.jpg",
         "about": "Ellie is an Elephant."
       },
       {
-        "name": "Molly Mouse",
+        "DeviceName": "Molly Mouse",
         //"profilePic": "assets/img/speakers/mouse.jpg",
         "about": "Molly is a Mouse."
       },
       {
-        "name": "Paul Puppy",
+        "DeviceName": "Paul Puppy",
         //"profilePic": "assets/img/speakers/puppy.jpg",
         "about": "Paul is a Puppy."
       }

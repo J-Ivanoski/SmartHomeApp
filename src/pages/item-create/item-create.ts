@@ -19,8 +19,8 @@ export class ItemCreatePage {
 
   constructor(public navCtrl: NavController, public viewCtrl: ViewController, formBuilder: FormBuilder){//, public camera: Camera) {
     this.form = formBuilder.group({
-      profilePic: [''],
-      name: ['', Validators.required],
+      //profilePic: [''],
+      DeviceName: ['', Validators.required],
       about: ['']
     });
 

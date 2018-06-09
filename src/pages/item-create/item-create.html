@@ -26,7 +26,7 @@
 <ion-content>
   <form *ngIf="form" [formGroup]="form" (ngSubmit)="createItem()">
     <input type="file" #fileInput style="visibility: hidden; height: 0px" name="files[]" (change)="processWebImage($event)" />
-    <div class="profile-image-wrapper" (click)="getPicture()">
+    <!-- <div class="profile-image-wrapper" (click)="getPicture()">
       <div class="profile-image-placeholder" *ngIf="!this.form.controls.profilePic.value">
         <ion-icon name="add"></ion-icon>
         <div>
@@ -34,10 +34,10 @@
         </div>
       </div>
       <div class="profile-image" [style.backgroundImage]="getProfileImageStyle()" *ngIf="this.form.controls.profilePic.value"></div>
-    </div>
+    </div> If we need a picture for the device -->
     <ion-list>
       <ion-item>
-        <ion-input type="text" placeholder="{{ 'NAME' }}" formControlName="name"></ion-input>
+        <ion-input type="text" placeholder="{{ 'Enter a device name' }}" formControlName="DeviceName"></ion-input>
       </ion-item>
       <ion-item>
         <ion-input type="text" placeholder="{{ 'ABOUT'}}" formControlName="about"></ion-input>
