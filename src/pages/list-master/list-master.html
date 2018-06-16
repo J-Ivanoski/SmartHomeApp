@@ -24,7 +24,7 @@
           <h2>{{item.DeviceName}}</h2>
           <p>{{item.about}}</p>
         </ion-label>
-         <ion-toggle checked="false"></ion-toggle>
+         <ion-toggle checked={{item.status}}></ion-toggle>
         <ion-note item-end *ngIf="item.note">{{item.note}}</ion-note>
       </ion-item>
 

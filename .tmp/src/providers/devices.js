@@ -8,50 +8,68 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Injectable } from '@angular/core';
-import { Device } from '../models/device';
+import { Device, categories, SecuritySystem } from '../models/device';
 var Devices = (function () {
     function Devices() {
+        // this.securitySystem.constructor(false);
+        this.securitySystem = new SecuritySystem();
         this.items = [];
         this.defaultItem = {
-            "DeviceName": "Burt Bear",
-            //"profilePic": "assets/img/speakers/bear.jpg",
-            "about": "Burt is a Bear.",
+            "DeviceName": "outdoor_light",
+            //"profilePic": "assets/img/speakers/bear.jpg", //namesto sliki mozeme ikoni za sekoja kategorija ili tip na senzor
+            "about": "a light at the tree house",
+            "status": "false",
+            "category": categories.SecurityDevices.toString()
         };
         var items = [
             {
-                "DeviceName": "Burt Bear",
+                "DeviceName": "outdoor_light",
                 //"profilePic": "assets/img/speakers/bear.jpg",
-                "about": "Burt is a Bear.",
+                "about": "a light at the tree house",
+                "status": "true",
+                "category": categories.OtherDevices.toString()
             },
             {
-                "DeviceName": "Charlie Cheetah",
+                "DeviceName": "Home Alarm",
                 //"profilePic": "assets/img/speakers/cheetah.jpg",
-                "about": "Charlie is a Cheetah."
+                "about": "Alarm sensors in the house",
+                "status": "true",
+                "category": categories.SecurityDevices.toString()
             },
             {
-                "DeviceName": "Donald Duck",
+                "DeviceName": "Outdoor Alarm",
                 //"profilePic": "assets/img/speakers/duck.jpg",
-                "about": "Donald is a Duck."
+                "about": "Alarm sensor at front door",
+                "status": "true",
+                "category": categories.SecurityDevices.toString()
             },
             {
                 "DeviceName": "Eva Eagle",
                 //"profilePic": "assets/img/speakers/eagle.jpg",
-                "about": "Eva is an Eagle."
+                "about": "Eva is an Eagle.",
+                "status": "false",
+                "category": categories.CamerasDevices.toString()
             },
             {
                 "DeviceName": "Ellie Elephant",
                 //"profilePic": "assets/img/speakers/elephant.jpg",
-                "about": "Ellie is an Elephant."
+                "about": "Ellie is an Elephant.",
+                "status": "false",
+                "category": categories.CamerasDevices.toString()
             },
             {
                 "DeviceName": "Molly Mouse",
                 //"profilePic": "assets/img/speakers/mouse.jpg",
-                "about": "Molly is a Mouse."
+                "about": "Molly is a Mouse.",
+                "status": "true",
+                "category": categories.ThermostatsDevices.toString()
             },
             {
                 "DeviceName": "Paul Puppy",
                 //"profilePic": "assets/img/speakers/puppy.jpg",
-                "about": "Paul is a Puppy."
+                "about": "Paul is a Puppy.",
+                "status": "true",
+                "category": categories.OtherDevices.toString()
             }
         ];
         for (var _i = 0, items_1 = items; _i < items_1.length; _i++) {
@@ -59,23 +77,45 @@ var Devices = (function () {
             this.items.push(new Device(item));
         }
     }
-    Devices.prototype.query = function (params) {
-        if (!params) {
+    Devices.prototype.query = function (securityStatus) {
+        if (!securityStatus) {
             return this.items;
         }
-        return this.items.filter(function (item) {
-            for (var key in params) {
-                var field = item[key];
-                if (typeof field == 'string' && field.toLowerCase().indexOf(params[key].toLowerCase()) >= 0) {
-                    return item;
+        else if (securityStatus.match("disarm")) {
+            this.items.forEach(function (item) {
+                if (item.category == 1) {
+                    item.status = "false";
                 }
-                else if (field == params[key]) {
-                    return item;
+            });
+            this.securitySystem.DisarmTheSecuritySystem(false); //set status to false
+            return this.items;
+        }
+        else if (securityStatus.match("arm")) {
+            this.items.forEach(function (item) {
+                if (item.category == 1) {
+                    item.status = "true";
                 }
-            }
+            });
+            this.securitySystem.ArmTheSecuritySystem(true);
+            return this.items;
+        }
+        else {
+            //error handling
             return null;
-        });
+        }
     };
+    // return this.items.filter((item) => {
+    //   for (let key in params) {
+    //     let field = item[key];
+    //     if (typeof field == 'string'  && field.toLowerCase().indexOf(params[key].toLowerCase()) >= 0) {
+    //       return item;
+    //     } else if (field == params[key]) {
+    //       return item;
+    //     }
+    //   }
+    //   return null;
+    // });
+    // }
     Devices.prototype.add = function (item) {
         this.items.push(item);
     };
