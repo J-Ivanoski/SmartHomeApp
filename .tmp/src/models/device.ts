@@ -38,9 +38,12 @@ export class Core_Device{
 @Injectable()
 export class SecuritySystem{
   SecuritySystemServices: boolean;
+
+  GarageDoors: boolean;
   //default constructor
   constructor(){
     this.SecuritySystemServices = true;
+    this.GarageDoors = false;
   }
 
   getSecuritySystemStatus(): boolean{
@@ -63,6 +66,24 @@ export class SecuritySystem{
 
   ArmTheSecuritySystem(SecuritySystemServices: boolean){
     this.SecuritySystemServices = SecuritySystemServices;
+  }
+
+  getGarageDoorsStatus():boolean{
+    return this.GarageDoors;
+  }
+
+  getGarageDoorsStatusHummanReadable():string{
+    let garageDoorsStatus:string;
+    if(this.getGarageDoorsStatus()==false){
+      garageDoorsStatus = "Closed";
+    }else{
+      garageDoorsStatus = "Opened";
+    }
+    return garageDoorsStatus;
+  }
+
+  OpenCloseGarageDoors(GarageDoors: boolean){
+    this.GarageDoors = GarageDoors;
   }
 
 }

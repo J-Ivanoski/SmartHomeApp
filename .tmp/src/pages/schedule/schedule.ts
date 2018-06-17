@@ -55,6 +55,14 @@ export class SchedulePage {
     console.log(this.devices.securitySystem.getSecuritySystemStatus());
   }
 
+  openGarageDoors(){
+    this.devices.garageDoors("open");
+  }
+
+  closeGarageDoors(){
+    this.devices.garageDoors("close");
+  }
+
   doRefresh(refresher: Refresher) {
     this.confData.getTimeline(this.dayIndex, this.queryText, this.excludeTracks, this.segment).subscribe((data: any) => {
       this.shownSessions = data.shownSessions;

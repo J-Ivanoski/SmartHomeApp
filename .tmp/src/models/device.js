@@ -44,6 +44,7 @@ var SecuritySystem = (function () {
     //default constructor
     function SecuritySystem() {
         this.SecuritySystemServices = true;
+        this.GarageDoors = false;
     }
     SecuritySystem.prototype.getSecuritySystemStatus = function () {
         return this.SecuritySystemServices;
@@ -63,6 +64,22 @@ var SecuritySystem = (function () {
     };
     SecuritySystem.prototype.ArmTheSecuritySystem = function (SecuritySystemServices) {
         this.SecuritySystemServices = SecuritySystemServices;
+    };
+    SecuritySystem.prototype.getGarageDoorsStatus = function () {
+        return this.GarageDoors;
+    };
+    SecuritySystem.prototype.getGarageDoorsStatusHummanReadable = function () {
+        var garageDoorsStatus;
+        if (this.getGarageDoorsStatus() == false) {
+            garageDoorsStatus = "Closed";
+        }
+        else {
+            garageDoorsStatus = "Opened";
+        }
+        return garageDoorsStatus;
+    };
+    SecuritySystem.prototype.OpenCloseGarageDoors = function (GarageDoors) {
+        this.GarageDoors = GarageDoors;
     };
     SecuritySystem = __decorate([
         Injectable(),

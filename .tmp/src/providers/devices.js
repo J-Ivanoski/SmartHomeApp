@@ -104,18 +104,35 @@ var Devices = (function () {
             return null;
         }
     };
-    // return this.items.filter((item) => {
-    //   for (let key in params) {
-    //     let field = item[key];
-    //     if (typeof field == 'string'  && field.toLowerCase().indexOf(params[key].toLowerCase()) >= 0) {
-    //       return item;
-    //     } else if (field == params[key]) {
-    //       return item;
-    //     }
-    //   }
-    //   return null;
-    // });
-    // }
+    Devices.prototype.garageDoors = function (garageDoors) {
+        if (!garageDoors) {
+            return this.securitySystem.getGarageDoorsStatus();
+        }
+        else if (garageDoors.match("open")) {
+            //change status for that category
+            // this.items.forEach(item => {
+            //   if(item.category == 1){
+            //     item.status = "false";
+            //   }
+            // });
+            this.securitySystem.OpenCloseGarageDoors(true);
+            return this.securitySystem.getGarageDoorsStatusHummanReadable();
+        }
+        else if (garageDoors.match("close")) {
+            //change status for that category
+            // this.items.forEach(item => {
+            //   if(item.category == 1){
+            //     item.status = "false";
+            //   }
+            // });
+            this.securitySystem.OpenCloseGarageDoors(false);
+            return this.securitySystem.getGarageDoorsStatusHummanReadable();
+        }
+        else {
+            //error handling
+            return null;
+        }
+    };
     Devices.prototype.add = function (item) {
         this.items.push(item);
     };
