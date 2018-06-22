@@ -83,7 +83,7 @@ var Devices = (function () {
         }
         else if (securityStatus.match("disarm")) {
             this.items.forEach(function (item) {
-                if (item.category == 1) {
+                if (item.category.match("Security Devices")) {
                     item.status = "false";
                 }
             });
@@ -92,7 +92,7 @@ var Devices = (function () {
         }
         else if (securityStatus.match("arm")) {
             this.items.forEach(function (item) {
-                if (item.category == 1) {
+                if (item.category.match("Security Devices")) {
                     item.status = "true";
                 }
             });

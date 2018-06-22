@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 //import { Camera } from '@ionic-native/camera';
 import { IonicPage, NavController, ViewController } from 'ionic-angular';
 
+import { categories } from '../../models/device';
+
 @IonicPage()
 @Component({
   selector: 'page-item-create',
@@ -15,14 +17,31 @@ export class ItemCreatePage {
 
   item: any;
 
+  Categories : string[] = [];
+
   form: FormGroup;
 
+
   constructor(public navCtrl: NavController, public viewCtrl: ViewController, formBuilder: FormBuilder){//, public camera: Camera) {
+    let CategoryList = [
+      {"category":categories.SecurityDevices.toString()},
+      {"category":categories.ThermostatsDevices.toString()},
+      {"category":categories.CamerasDevices.toString()},
+      {"category":categories.OtherDevices.toString()}
+    ];
+
+    for (let category of CategoryList) {
+      this.Categories.push(category.category);
+    }
+
+    // console.log(this.Categories);
+
     this.form = formBuilder.group({
       //profilePic: [''],
       DeviceName: ['', Validators.required],
-      about: [''],
-      status: false
+      about: ['', Validators.required],
+      status: false,
+      category: ['']
     });
 
     // Watch the form for changes, and

@@ -8,7 +8,7 @@ webpackJsonp([0],{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_devices__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_item_create_item_create__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_item_create_item_create__ = __webpack_require__(210);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -82,7 +82,7 @@ var ListMasterPage = (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Devices; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_device__ = __webpack_require__(292);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__models_device__ = __webpack_require__(209);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -168,7 +168,7 @@ var Devices = (function () {
         }
         else if (securityStatus.match("disarm")) {
             this.items.forEach(function (item) {
-                if (item.category == 1) {
+                if (item.category.match("Security Devices")) {
                     item.status = "false";
                 }
             });
@@ -177,7 +177,7 @@ var Devices = (function () {
         }
         else if (securityStatus.match("arm")) {
             this.items.forEach(function (item) {
-                if (item.category == 1) {
+                if (item.category.match("Security Devices")) {
                     item.status = "true";
                 }
             });
@@ -389,7 +389,7 @@ var SchedulePage = (function () {
     ], SchedulePage.prototype, "scheduleList", void 0);
     SchedulePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-schedule',template:/*ion-inline-start:"/home/jovica/Ionic/SmartHomeApp/src/pages/schedule/schedule.html"*/'<ion-header>\n  <ion-navbar no-border-bottom>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Security</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content >\n  <ion-grid>\n    <ion-row>\n      <ion-col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12>\n          <ion-list>\n              <ion-item-sliding #item>\n                  <ion-item-options side="left">\n                      <button class="fit-left" ion-button color="danger" (click)="disarm()">Disarm <ion-icon name="unlock"></ion-icon></button>\n                    </ion-item-options>\n                  <ion-item>\n        \n                    <ion-grid>\n                      <ion-row>\n                        <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>\n                          <ion-icon class="float-left" name="arrow-back"></ion-icon>\n                        </ion-col>\n        \n                        <ion-col col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6>\n                            <div class="check text-center">\n                                <img *ngIf="this.devices.securitySystem.getSecuritySystemStatus();" class="cls" src="assets/img/check.png" alt="arm icon" />\n                                <img *ngIf="!this.devices.securitySystem.getSecuritySystemStatus();" class="cls" src="assets/img/uncheck.png" alt="disarm icon" />\n                            </div>\n                        </ion-col>\n        \n                        <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>\n                            <ion-icon class="float-right" name="arrow-forward"></ion-icon>\n                        </ion-col>\n        \n                        </ion-row>\n                      </ion-grid>\n        \n                  </ion-item>\n                  <ion-item-options side="right">\n                    <button class="fit-right" ion-button color="success" (click)="arm()">Arm <ion-icon name="key"></ion-icon></button>\n                  </ion-item-options>\n                </ion-item-sliding>\n        \n              <ion-grid>\n                  <ion-row class="no-margin-top" col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12>\n                    <ion-col class="text-center">\n                      <h3 ion-text><strong>{{this.devices.securitySystem.getSecuritySystemStatusHummanReadable()}}</strong></h3>\n                    </ion-col>\n                  </ion-row>\n                  <ion-row>\n                    <ion-col col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6>\n                      <div class="text-center">\n                        <p ion-text>All Doors</p>\n                        <button *ngIf="this.devices.securitySystem.getSecuritySystemStatus();" ion-button round><ion-icon class="clui" name="lock"></ion-icon> Locked</button>\n                        <button *ngIf="!this.devices.securitySystem.getSecuritySystemStatus();" ion-button round color="danger"><ion-icon class="clui" name="unlock"></ion-icon> Unlocked</button>\n                      </div>\n                    </ion-col>\n                    <ion-col col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6>\n                      <div class="text-center">\n                        <p ion-text>Garage Doors</p>\n                        <button *ngIf="this.devices.securitySystem.getGarageDoorsStatus()" ion-button round (click)="closeGarageDoors()" color="danger">{{this.devices.securitySystem.getGarageDoorsStatusHummanReadable()}} <ion-icon class="clui" name="home"></ion-icon></button>\n                        <button *ngIf="!this.devices.securitySystem.getGarageDoorsStatus()" ion-button round (click)="openGarageDoors()" >{{this.devices.securitySystem.getGarageDoorsStatusHummanReadable()}} <ion-icon class="clui" name="home"></ion-icon></button>\n                      </div>\n                    </ion-col>\n                  </ion-row>\n                </ion-grid>\n            \n          </ion-list>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>'/*ion-inline-end:"/home/jovica/Ionic/SmartHomeApp/src/pages/schedule/schedule.html"*/
+            selector: 'page-schedule',template:/*ion-inline-start:"/home/jovica/Ionic/SmartHomeApp/src/pages/schedule/schedule.html"*/'<ion-header>\n  <ion-navbar no-border-bottom>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Security</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content >\n  <ion-grid>\n    <ion-row>\n      <ion-col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12>\n          <ion-list>\n              <ion-item-sliding #item>\n                  <ion-item-options side="left">\n                      <button class="fit-left" ion-button color="danger" (click)="disarm()">Disarm <ion-icon name="unlock"></ion-icon></button>\n                    </ion-item-options>\n                  <ion-item>\n        \n                    <ion-grid>\n                      <ion-row>\n                        <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>\n                          <ion-icon class="float-left" name="arrow-back"></ion-icon>\n                        </ion-col>\n        \n                        <ion-col col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6>\n                            <div class="check text-center">\n                                <img *ngIf="this.devices.securitySystem.getSecuritySystemStatus();" class="cls" src="assets/img/check.png" alt="arm icon" />\n                                <img *ngIf="!this.devices.securitySystem.getSecuritySystemStatus();" class="cls" src="assets/img/uncheck.png" alt="disarm icon" />\n                            </div>\n                        </ion-col>\n        \n                        <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>\n                            <ion-icon class="float-right" name="arrow-forward"></ion-icon>\n                        </ion-col>\n        \n                        </ion-row>\n                      </ion-grid>\n        \n                  </ion-item>\n                  <ion-item-options side="right">\n                    <button class="fit-right" ion-button color="success" (click)="arm()">Arm <ion-icon name="key"></ion-icon></button>\n                  </ion-item-options>\n                </ion-item-sliding>\n        \n              <ion-grid>\n                  <ion-row class="no-margin-top" col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12>\n                    <ion-col class="text-center">\n                      <h3 ion-text><strong>{{this.devices.securitySystem.getSecuritySystemStatusHummanReadable()}}</strong></h3>\n                    </ion-col>\n                  </ion-row>\n                  <ion-row>\n                    <ion-col col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6>\n                      <div class="text-center">\n                        <p ion-text>All Doors</p>\n                        <button *ngIf="this.devices.securitySystem.getSecuritySystemStatus();" ion-button round><ion-icon class="clui" name="lock"></ion-icon> Locked</button>\n                        <button *ngIf="!this.devices.securitySystem.getSecuritySystemStatus();" ion-button round color="danger"><ion-icon class="clui" name="unlock"></ion-icon> Unlocked</button>\n                      </div>\n                    </ion-col>\n                    <ion-col col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6>\n                      <div class="text-center">\n                        <p ion-text>Garage Doors</p>\n                        <button *ngIf="this.devices.securitySystem.getGarageDoorsStatus()" ion-button round (click)="closeGarageDoors()">{{this.devices.securitySystem.getGarageDoorsStatusHummanReadable()}} <ion-icon class="clui" name="home"></ion-icon></button>\n                        <button *ngIf="!this.devices.securitySystem.getGarageDoorsStatus()" ion-button round (click)="openGarageDoors()" color="danger" >{{this.devices.securitySystem.getGarageDoorsStatusHummanReadable()}} <ion-icon class="clui" name="home"></ion-icon></button>\n                      </div>\n                    </ion-col>\n                  </ion-row>\n                </ion-grid>\n            \n          </ion-list>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>'/*ion-inline-end:"/home/jovica/Ionic/SmartHomeApp/src/pages/schedule/schedule.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* AlertController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["c" /* App */],
@@ -417,8 +417,8 @@ var SchedulePage = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_in_app_browser__ = __webpack_require__(203);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_conference_data__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__session_detail_session_detail__ = __webpack_require__(210);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__speaker_detail_speaker_detail__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__session_detail_session_detail__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__speaker_detail_speaker_detail__ = __webpack_require__(212);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -756,10 +756,121 @@ var LoginPage = (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Device; });
+/* unused harmony export Core_Device */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return SecuritySystem; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return categories; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+/**
+ * A generic model that our Master-Detail pages list, create, and delete.
+ *
+ * Change "Item" to the noun your app will use. For example, a "Contact," or a
+ * "Customer," or a "Animal," or something like that.
+ *
+ * The Items service manages creating instances of Item, so go ahead and rename
+ * that something that fits your app as well.
+ */
+var Device = (function () {
+    function Device(fields) {
+        this.securitySystem = SecuritySystem;
+        // Quick and dirty extend/assign fields to this model
+        for (var f in fields) {
+            // @ts-ignore
+            this[f] = fields[f];
+        }
+    }
+    return Device;
+}());
+
+/* Model if you are using database - the data structures with all properties ...*/
+var Core_Device = (function () {
+    function Core_Device(DeviceName, DeviceDescription, DeviceStatus, DeviceCategory) {
+        this.DeviceName = DeviceName;
+        this.DeviceDescription = DeviceDescription;
+        this.DeviceStatus = DeviceStatus;
+        this.DeviceCategory = DeviceCategory;
+    }
+    return Core_Device;
+}());
+
+var SecuritySystem = (function () {
+    //default constructor
+    function SecuritySystem() {
+        this.SecuritySystemServices = true;
+        this.GarageDoors = false;
+    }
+    SecuritySystem.prototype.getSecuritySystemStatus = function () {
+        return this.SecuritySystemServices;
+    };
+    SecuritySystem.prototype.getSecuritySystemStatusHummanReadable = function () {
+        var securitySystemStatusHummanReadable;
+        if (this.getSecuritySystemStatus() == false) {
+            securitySystemStatusHummanReadable = "Disarmed";
+        }
+        else {
+            securitySystemStatusHummanReadable = "Armed";
+        }
+        return securitySystemStatusHummanReadable;
+    };
+    SecuritySystem.prototype.DisarmTheSecuritySystem = function (SecuritySystemServices) {
+        this.SecuritySystemServices = SecuritySystemServices;
+    };
+    SecuritySystem.prototype.ArmTheSecuritySystem = function (SecuritySystemServices) {
+        this.SecuritySystemServices = SecuritySystemServices;
+    };
+    SecuritySystem.prototype.getGarageDoorsStatus = function () {
+        return this.GarageDoors;
+    };
+    SecuritySystem.prototype.getGarageDoorsStatusHummanReadable = function () {
+        var garageDoorsStatus;
+        if (this.getGarageDoorsStatus() == false) {
+            garageDoorsStatus = "Closed";
+        }
+        else {
+            garageDoorsStatus = "Opened";
+        }
+        return garageDoorsStatus;
+    };
+    SecuritySystem.prototype.OpenCloseGarageDoors = function (GarageDoors) {
+        this.GarageDoors = GarageDoors;
+    };
+    SecuritySystem = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [])
+    ], SecuritySystem);
+    return SecuritySystem;
+}());
+
+var categories;
+(function (categories) {
+    categories["SecurityDevices"] = "Security Devices";
+    categories["ThermostatsDevices"] = "Thermostat Devices";
+    categories["CamerasDevices"] = "Camera Devices";
+    categories["OtherDevices"] = "Other Devices";
+})(categories || (categories = {}));
+//# sourceMappingURL=device.js.map
+
+/***/ }),
+
+/***/ 210:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ItemCreatePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_forms__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_device__ = __webpack_require__(209);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -773,16 +884,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 //import { Camera } from '@ionic-native/camera';
 
+
 var ItemCreatePage = (function () {
     function ItemCreatePage(navCtrl, viewCtrl, formBuilder) {
         var _this = this;
         this.navCtrl = navCtrl;
         this.viewCtrl = viewCtrl;
+        this.Categories = [];
+        var CategoryList = [
+            { "category": __WEBPACK_IMPORTED_MODULE_3__models_device__["c" /* categories */].SecurityDevices.toString() },
+            { "category": __WEBPACK_IMPORTED_MODULE_3__models_device__["c" /* categories */].ThermostatsDevices.toString() },
+            { "category": __WEBPACK_IMPORTED_MODULE_3__models_device__["c" /* categories */].CamerasDevices.toString() },
+            { "category": __WEBPACK_IMPORTED_MODULE_3__models_device__["c" /* categories */].OtherDevices.toString() }
+        ];
+        for (var _i = 0, CategoryList_1 = CategoryList; _i < CategoryList_1.length; _i++) {
+            var category = CategoryList_1[_i];
+            this.Categories.push(category.category);
+        }
+        // console.log(this.Categories);
         this.form = formBuilder.group({
             //profilePic: [''],
             DeviceName: ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required],
-            about: [''],
-            status: false
+            about: ['', __WEBPACK_IMPORTED_MODULE_1__angular_forms__["f" /* Validators */].required],
+            status: false,
+            category: ['']
         });
         // Watch the form for changes, and
         this.form.valueChanges.subscribe(function () {
@@ -840,7 +965,7 @@ var ItemCreatePage = (function () {
     ], ItemCreatePage.prototype, "fileInput", void 0);
     ItemCreatePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-item-create',template:/*ion-inline-start:"/home/jovica/Ionic/SmartHomeApp/src/pages/item-create/item-create.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ \'Add a new device\'}}</ion-title>\n    <ion-buttons start>\n      <button ion-button (click)="cancel()">\n        <span color="primary" showWhen="ios">\n          {{ \'CANCEL_BUTTON\'}}\n        </span>\n        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>\n      </button>\n    </ion-buttons>\n    <ion-buttons end>\n      <button ion-button (click)="done()" [disabled]="!isReadyToSave" strong>\n        <span color="primary" showWhen="ios">\n          {{ \'DONE_BUTTON\'}}\n        </span>\n        <ion-icon name="md-checkmark" showWhen="core,android,windows"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n  <form *ngIf="form" [formGroup]="form" (ngSubmit)="createItem()">\n    <input type="file" #fileInput style="visibility: hidden; height: 0px" name="files[]" (change)="processWebImage($event)" />\n    <!-- <div class="profile-image-wrapper" (click)="getPicture()">\n      <div class="profile-image-placeholder" *ngIf="!this.form.controls.profilePic.value">\n        <ion-icon name="add"></ion-icon>\n        <div>\n          {{ \'ITEM_CREATE_CHOOSE_IMAGE\'}}\n        </div>\n      </div>\n      <div class="profile-image" [style.backgroundImage]="getProfileImageStyle()" *ngIf="this.form.controls.profilePic.value"></div>\n    </div> If we need a picture for the device -->\n    <ion-list>\n      <ion-item>\n        <ion-input type="text" placeholder="{{ \'Enter a device name\' }}" formControlName="DeviceName"></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-input type="text" placeholder="{{ \'Description for the device\'}}" formControlName="about"></ion-input>\n      </ion-item>\n    </ion-list>\n  </form>\n</ion-content>'/*ion-inline-end:"/home/jovica/Ionic/SmartHomeApp/src/pages/item-create/item-create.html"*/
+            selector: 'page-item-create',template:/*ion-inline-start:"/home/jovica/Ionic/SmartHomeApp/src/pages/item-create/item-create.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ \'Add a new device\'}}</ion-title>\n    <ion-buttons start>\n      <button ion-button (click)="cancel()">\n        <span color="primary" showWhen="ios">\n          {{ \'CANCEL_BUTTON\'}}\n        </span>\n        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>\n      </button>\n    </ion-buttons>\n    <ion-buttons end>\n      <button ion-button (click)="done()" [disabled]="!isReadyToSave" strong>\n        <span color="primary" showWhen="ios">\n          {{ \'DONE_BUTTON\'}}\n        </span>\n        <ion-icon name="md-checkmark" showWhen="core,android,windows"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n  <form *ngIf="form" [formGroup]="form" (ngSubmit)="createItem()">\n    <input type="file" #fileInput style="visibility: hidden; height: 0px" name="files[]" (change)="processWebImage($event)" />\n    <!-- <div class="profile-image-wrapper" (click)="getPicture()">\n      <div class="profile-image-placeholder" *ngIf="!this.form.controls.profilePic.value">\n        <ion-icon name="add"></ion-icon>\n        <div>\n          {{ \'ITEM_CREATE_CHOOSE_IMAGE\'}}\n        </div>\n      </div>\n      <div class="profile-image" [style.backgroundImage]="getProfileImageStyle()" *ngIf="this.form.controls.profilePic.value"></div>\n    </div> If we need a picture for the device -->\n    \n    <ion-list radio-group formControlName="category">\n        <ion-list-header><h1><strong>Select Category: </strong></h1></ion-list-header>\n        <ion-item *ngFor="let categoryName of Categories">\n          <ion-label>\n            <h2>{{categoryName}}</h2>\n          </ion-label>\n          <ion-radio value="{{categoryName}}"></ion-radio>\n        </ion-item>\n    </ion-list>\n\n    <ion-list>\n      <ion-item>\n        <ion-input type="text" placeholder="{{ \'Enter a device name\' }}" formControlName="DeviceName"></ion-input>\n      </ion-item>\n      <ion-item>\n        <ion-input type="text" placeholder="{{ \'Description for the device\'}}" formControlName="about"></ion-input>\n      </ion-item>\n    </ion-list>\n  </form>\n</ion-content>'/*ion-inline-end:"/home/jovica/Ionic/SmartHomeApp/src/pages/item-create/item-create.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["n" /* NavController */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["t" /* ViewController */], __WEBPACK_IMPORTED_MODULE_1__angular_forms__["a" /* FormBuilder */]])
     ], ItemCreatePage);
@@ -851,7 +976,7 @@ var ItemCreatePage = (function () {
 
 /***/ }),
 
-/***/ 210:
+/***/ 211:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -912,7 +1037,7 @@ var SessionDetailPage = (function () {
 
 /***/ }),
 
-/***/ 211:
+/***/ 212:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -968,7 +1093,7 @@ var SpeakerDetailPage = (function () {
 
 /***/ }),
 
-/***/ 212:
+/***/ 213:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1037,7 +1162,7 @@ var TutorialPage = (function () {
 
 /***/ }),
 
-/***/ 213:
+/***/ 214:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1114,7 +1239,7 @@ var SupportPage = (function () {
 
 /***/ }),
 
-/***/ 214:
+/***/ 215:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1163,13 +1288,13 @@ var PopoverPage = (function () {
 
 /***/ }),
 
-/***/ 215:
+/***/ 216:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(216);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(238);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(217);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(239);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -1177,7 +1302,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 238:
+/***/ 239:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1189,23 +1314,23 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_in_app_browser__ = __webpack_require__(203);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_splash_screen__ = __webpack_require__(206);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_storage__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__(291);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__app_component__ = __webpack_require__(292);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_about_about__ = __webpack_require__(296);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_about_popover_about_popover__ = __webpack_require__(214);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_about_popover_about_popover__ = __webpack_require__(215);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_account_account__ = __webpack_require__(207);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_login_login__ = __webpack_require__(208);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_map_map__ = __webpack_require__(106);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_schedule_schedule__ = __webpack_require__(107);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_schedule_filter_schedule_filter__ = __webpack_require__(297);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_session_detail_session_detail__ = __webpack_require__(210);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_session_detail_session_detail__ = __webpack_require__(211);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_signup_signup__ = __webpack_require__(109);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_speaker_detail_speaker_detail__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_speaker_detail_speaker_detail__ = __webpack_require__(212);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_speaker_list_speaker_list__ = __webpack_require__(108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_tabs_page_tabs_page__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_tutorial_tutorial__ = __webpack_require__(212);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_support_support__ = __webpack_require__(213);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_tutorial_tutorial__ = __webpack_require__(213);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_support_support__ = __webpack_require__(214);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_list_master_list_master__ = __webpack_require__(104);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_item_create_item_create__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_item_create_item_create__ = __webpack_require__(210);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__providers_conference_data__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__providers_user_data__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__providers_devices__ = __webpack_require__(105);
@@ -1496,7 +1621,7 @@ var ConferenceData = (function () {
 
 /***/ }),
 
-/***/ 291:
+/***/ 292:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1510,10 +1635,10 @@ var ConferenceData = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_map_map__ = __webpack_require__(106);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_signup_signup__ = __webpack_require__(109);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_tabs_page_tabs_page__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_tutorial_tutorial__ = __webpack_require__(212);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_tutorial_tutorial__ = __webpack_require__(213);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_schedule_schedule__ = __webpack_require__(107);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_speaker_list_speaker_list__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_support_support__ = __webpack_require__(213);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_support_support__ = __webpack_require__(214);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__providers_conference_data__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__providers_user_data__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_list_master_list_master__ = __webpack_require__(104);
@@ -1684,116 +1809,6 @@ var ConferenceApp = (function () {
 
 /***/ }),
 
-/***/ 292:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Device; });
-/* unused harmony export Core_Device */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return SecuritySystem; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return categories; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-/**
- * A generic model that our Master-Detail pages list, create, and delete.
- *
- * Change "Item" to the noun your app will use. For example, a "Contact," or a
- * "Customer," or a "Animal," or something like that.
- *
- * The Items service manages creating instances of Item, so go ahead and rename
- * that something that fits your app as well.
- */
-var Device = (function () {
-    function Device(fields) {
-        this.securitySystem = SecuritySystem;
-        // Quick and dirty extend/assign fields to this model
-        for (var f in fields) {
-            // @ts-ignore
-            this[f] = fields[f];
-        }
-    }
-    return Device;
-}());
-
-/* Model if you are using database - the data structures with all properties ...*/
-var Core_Device = (function () {
-    function Core_Device(DeviceName, DeviceDescription, DeviceStatus, DeviceCategory) {
-        this.DeviceName = DeviceName;
-        this.DeviceDescription = DeviceDescription;
-        this.DeviceStatus = DeviceStatus;
-        this.DeviceCategory = DeviceCategory;
-    }
-    return Core_Device;
-}());
-
-var SecuritySystem = (function () {
-    //default constructor
-    function SecuritySystem() {
-        this.SecuritySystemServices = true;
-        this.GarageDoors = false;
-    }
-    SecuritySystem.prototype.getSecuritySystemStatus = function () {
-        return this.SecuritySystemServices;
-    };
-    SecuritySystem.prototype.getSecuritySystemStatusHummanReadable = function () {
-        var securitySystemStatusHummanReadable;
-        if (this.getSecuritySystemStatus() == false) {
-            securitySystemStatusHummanReadable = "Disarmed";
-        }
-        else {
-            securitySystemStatusHummanReadable = "Armed";
-        }
-        return securitySystemStatusHummanReadable;
-    };
-    SecuritySystem.prototype.DisarmTheSecuritySystem = function (SecuritySystemServices) {
-        this.SecuritySystemServices = SecuritySystemServices;
-    };
-    SecuritySystem.prototype.ArmTheSecuritySystem = function (SecuritySystemServices) {
-        this.SecuritySystemServices = SecuritySystemServices;
-    };
-    SecuritySystem.prototype.getGarageDoorsStatus = function () {
-        return this.GarageDoors;
-    };
-    SecuritySystem.prototype.getGarageDoorsStatusHummanReadable = function () {
-        var garageDoorsStatus;
-        if (this.getGarageDoorsStatus() == false) {
-            garageDoorsStatus = "Closed";
-        }
-        else {
-            garageDoorsStatus = "Opened";
-        }
-        return garageDoorsStatus;
-    };
-    SecuritySystem.prototype.OpenCloseGarageDoors = function (GarageDoors) {
-        this.GarageDoors = GarageDoors;
-    };
-    SecuritySystem = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [])
-    ], SecuritySystem);
-    return SecuritySystem;
-}());
-
-var categories;
-(function (categories) {
-    categories[categories["SecurityDevices"] = 1] = "SecurityDevices";
-    categories[categories["ThermostatsDevices"] = 2] = "ThermostatsDevices";
-    categories[categories["CamerasDevices"] = 3] = "CamerasDevices";
-    categories[categories["OtherDevices"] = 4] = "OtherDevices";
-})(categories || (categories = {}));
-//# sourceMappingURL=device.js.map
-
-/***/ }),
-
 /***/ 296:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1801,7 +1816,7 @@ var categories;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AboutPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__about_popover_about_popover__ = __webpack_require__(214);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__about_popover_about_popover__ = __webpack_require__(215);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2048,5 +2063,5 @@ var TabsPage = (function () {
 
 /***/ })
 
-},[215]);
+},[216]);
 //# sourceMappingURL=main.js.map

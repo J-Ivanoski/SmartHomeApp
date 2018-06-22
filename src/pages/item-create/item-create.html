@@ -35,6 +35,17 @@
       </div>
       <div class="profile-image" [style.backgroundImage]="getProfileImageStyle()" *ngIf="this.form.controls.profilePic.value"></div>
     </div> If we need a picture for the device -->
+    
+    <ion-list radio-group formControlName="category">
+        <ion-list-header><h1><strong>Select Category: </strong></h1></ion-list-header>
+        <ion-item *ngFor="let categoryName of Categories">
+          <ion-label>
+            <h2>{{categoryName}}</h2>
+          </ion-label>
+          <ion-radio value="{{categoryName}}"></ion-radio>
+        </ion-item>
+    </ion-list>
+
     <ion-list>
       <ion-item>
         <ion-input type="text" placeholder="{{ 'Enter a device name' }}" formControlName="DeviceName"></ion-input>

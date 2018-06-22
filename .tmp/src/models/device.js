@@ -90,9 +90,9 @@ var SecuritySystem = (function () {
 export { SecuritySystem };
 export var categories;
 (function (categories) {
-    categories[categories["SecurityDevices"] = 1] = "SecurityDevices";
-    categories[categories["ThermostatsDevices"] = 2] = "ThermostatsDevices";
-    categories[categories["CamerasDevices"] = 3] = "CamerasDevices";
-    categories[categories["OtherDevices"] = 4] = "OtherDevices";
+    categories["SecurityDevices"] = "Security Devices";
+    categories["ThermostatsDevices"] = "Thermostat Devices";
+    categories["CamerasDevices"] = "Camera Devices";
+    categories["OtherDevices"] = "Other Devices";
 })(categories || (categories = {}));
 //# sourceMappingURL=device.js.map

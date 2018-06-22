@@ -20,8 +20,6 @@ export class Devices {
 
   constructor() {
     
-    // this.securitySystem.constructor(false);
-
     let items = [
       {
         "DeviceName": "outdoor_light",
@@ -88,7 +86,7 @@ export class Devices {
       return this.items;
     }else if(securityStatus.match("disarm")){//disarming security sytem devices
       this.items.forEach(item => {
-        if(item.category == 1){
+        if(item.category.match("Security Devices")){
           item.status = "false";
         }
       });
@@ -97,7 +95,7 @@ export class Devices {
     }
       else if(securityStatus.match("arm")){//turning on the security system devices
         this.items.forEach(item => {
-          if(item.category == 1){
+          if(item.category.match("Security Devices")){
             item.status = "true";
           }
         });

@@ -89,12 +89,11 @@ export class SecuritySystem{
 }
 
 export enum categories{
-  SecurityDevices = 1,
-  ThermostatsDevices = 2,
-  CamerasDevices = 3,
-  OtherDevices = 4
+  SecurityDevices = "Security Devices",
+  ThermostatsDevices = "Thermostat Devices",
+  CamerasDevices = "Camera Devices",
+  OtherDevices = "Other Devices"
 }
-
 
 export interface Device {
   [prop: string]: any;
