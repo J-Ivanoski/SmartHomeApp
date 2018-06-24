@@ -1,11 +1,9 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 
-import { ConferenceData } from '../../providers/conference-data';
 
 import { Platform } from 'ionic-angular';
 
 
-declare var google: any;
 
 
 @Component({
@@ -15,10 +13,11 @@ declare var google: any;
 export class MapPage {
 
   @ViewChild('mapCanvas') mapElement: ElementRef;
-  constructor(public confData: ConferenceData, public platform: Platform) {
+  constructor(public platform: Platform) {
   }
-
-  ionViewDidLoad() {
+/*
+  ionViewDidLoad()
+  {
 
       this.confData.getMap().subscribe((mapData: any) => {
         let mapEle = this.mapElement.nativeElement;
@@ -52,3 +51,5 @@ export class MapPage {
 
   }
 }
+
+*/}

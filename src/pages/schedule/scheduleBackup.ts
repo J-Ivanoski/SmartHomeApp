@@ -1,3 +1,5 @@
+
+/*
 import { Component, ViewChild } from '@angular/core';
 
 import { AlertController, App, FabContainer, ItemSliding, List, ModalController, NavController, ToastController, LoadingController, Refresher } from 'ionic-angular';
@@ -8,12 +10,7 @@ import { AlertController, App, FabContainer, ItemSliding, List, ModalController,
 */
 // import moment from 'moment';
 
-import { ConferenceData } from '../../providers/conference-data';
-import { UserData } from '../../providers/user-data';
-
-import { SessionDetailPage } from '../session-detail/session-detail';
-import { ScheduleFilterPage } from '../schedule-filter/schedule-filter';
-
+/*
 
 @Component({
   selector: 'page-schedule',
@@ -41,7 +38,6 @@ export class SchedulePage {
     public modalCtrl: ModalController,
     public navCtrl: NavController,
     public toastCtrl: ToastController,
-    public confData: ConferenceData,
     public user: UserData,
   ) {}
 
@@ -57,7 +53,7 @@ export class SchedulePage {
     this.app.setTitle('Schedule');
     this.updateSchedule();
   }
-
+/*
   updateSchedule() {
     // Close any open sliding items when the schedule updates
     this.scheduleList && this.scheduleList.closeSlidingItems();
@@ -66,8 +62,8 @@ export class SchedulePage {
       this.shownSessions = data.shownSessions;
       this.groups = data.groups;
     });
-  }
-
+  }*/
+/*
   presentFilter() {
     let modal = this.modalCtrl.create(ScheduleFilterPage, this.excludeTracks);
     modal.present();
@@ -175,3 +171,4 @@ export class SchedulePage {
     });
   }
 }
+*/

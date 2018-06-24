@@ -11,16 +11,11 @@ import { IonicStorageModule } from '@ionic/storage';
 
 import { ConferenceApp } from './app.component';
 
-import { AboutPage } from '../pages/about/about';
-import { PopoverPage } from '../pages/about-popover/about-popover';
 import { AccountPage } from '../pages/account/account';
 import { LoginPage } from '../pages/login/login';
 import { MapPage } from '../pages/map/map';
 import { SchedulePage } from '../pages/schedule/schedule';
-import { ScheduleFilterPage } from '../pages/schedule-filter/schedule-filter';
-import { SessionDetailPage } from '../pages/session-detail/session-detail';
 import { SignupPage } from '../pages/signup/signup';
-import { SpeakerDetailPage } from '../pages/speaker-detail/speaker-detail';
 import { SpeakerListPage } from '../pages/speaker-list/speaker-list';
 import { TabsPage } from '../pages/tabs-page/tabs-page';
 import { TutorialPage } from '../pages/tutorial/tutorial';
@@ -29,7 +24,6 @@ import { SupportPage } from '../pages/support/support';
 import { ListMasterPage } from '../pages/list-master/list-master';
 import { ItemCreatePage } from '../pages/item-create/item-create';
 
-import { ConferenceData } from '../providers/conference-data';
 import { UserData } from '../providers/user-data';
 import { Devices } from '../providers/devices';
 
@@ -37,16 +31,11 @@ import { Devices } from '../providers/devices';
 @NgModule({
   declarations: [
     ConferenceApp,
-    AboutPage,
     AccountPage,
     LoginPage,
     MapPage,
-    PopoverPage,
     SchedulePage,
-    ScheduleFilterPage,
-    SessionDetailPage,
     SignupPage,
-    SpeakerDetailPage,
     SpeakerListPage,
     TabsPage,
     TutorialPage,
@@ -61,12 +50,8 @@ import { Devices } from '../providers/devices';
       links: [
         { component: TabsPage, name: 'TabsPage', segment: 'tabs-page' },
         { component: SchedulePage, name: 'Schedule', segment: 'schedule' },
-        { component: SessionDetailPage, name: 'SessionDetail', segment: 'sessionDetail/:sessionId' },
-        { component: ScheduleFilterPage, name: 'ScheduleFilter', segment: 'scheduleFilter' },
         { component: SpeakerListPage, name: 'SpeakerList', segment: 'speakerList' },
-        { component: SpeakerDetailPage, name: 'SpeakerDetail', segment: 'speakerDetail/:speakerId' },
         { component: MapPage, name: 'Map', segment: 'map' },
-        { component: AboutPage, name: 'About', segment: 'about' },
         { component: ListMasterPage, name: 'ListMaster', segment: 'list-master' },
         { component: ItemCreatePage, name: 'ItemCreate', segment: 'item-create' },
         { component: TutorialPage, name: 'Tutorial', segment: 'tutorial' },
@@ -81,16 +66,11 @@ import { Devices } from '../providers/devices';
   bootstrap: [IonicApp],
   entryComponents: [
     ConferenceApp,
-    AboutPage,
     AccountPage,
     LoginPage,
     MapPage,
-    PopoverPage,
     SchedulePage,
-    ScheduleFilterPage,
-    SessionDetailPage,
     SignupPage,
-    SpeakerDetailPage,
     SpeakerListPage,
     TabsPage,
     TutorialPage,
@@ -100,7 +80,6 @@ import { Devices } from '../providers/devices';
   ],
   providers: [
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    ConferenceData,
     UserData,
     InAppBrowser,
     SplashScreen,
