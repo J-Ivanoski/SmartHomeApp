@@ -88,6 +88,12 @@ var SecuritySystem = (function () {
     return SecuritySystem;
 }());
 export { SecuritySystem };
+var categoriesWithIcons = (function () {
+    function categoriesWithIcons() {
+    }
+    return categoriesWithIcons;
+}());
+export { categoriesWithIcons };
 export var categories;
 (function (categories) {
     categories["SecurityDevices"] = "Security Devices";

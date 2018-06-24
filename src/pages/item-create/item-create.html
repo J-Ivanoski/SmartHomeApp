@@ -38,11 +38,14 @@
     
     <ion-list radio-group formControlName="category">
         <ion-list-header><h1><strong>Select Category: </strong></h1></ion-list-header>
-        <ion-item *ngFor="let categoryName of Categories">
+        <ion-item *ngFor="let categoryObj of Categories">
           <ion-label>
-            <h2>{{categoryName}}</h2>
+              <ion-avatar id="pad">
+                  <img [src]="categoryObj.icon" />
+                </ion-avatar>
+            <h2 id="space">{{categoryObj.category}}</h2>
           </ion-label>
-          <ion-radio value="{{categoryName}}"></ion-radio>
+          <ion-radio value="{{categoryObj.category}}"></ion-radio>
         </ion-item>
     </ion-list>
 

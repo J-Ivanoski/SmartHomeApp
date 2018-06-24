@@ -88,6 +88,15 @@ export class SecuritySystem{
 
 }
 
+export class categoriesWithIcons {
+  category: any;
+  icon: any;
+  
+  constructor(){
+
+  }
+}
+
 export enum categories{
   SecurityDevices = "Security Devices",
   ThermostatsDevices = "Thermostat Devices",

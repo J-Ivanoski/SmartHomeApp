@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 //import { Camera } from '@ionic-native/camera';
 import { IonicPage, NavController, ViewController } from 'ionic-angular';
 
-import { categories } from '../../models/device';
+import { categories, categoriesWithIcons } from '../../models/device';
 
 @IonicPage()
 @Component({
@@ -17,31 +17,32 @@ export class ItemCreatePage {
 
   item: any;
 
-  Categories : string[] = [];
+  Categories : categoriesWithIcons[] = [];
+
 
   form: FormGroup;
 
 
   constructor(public navCtrl: NavController, public viewCtrl: ViewController, formBuilder: FormBuilder){//, public camera: Camera) {
     let CategoryList = [
-      {"category":categories.SecurityDevices.toString()},
-      {"category":categories.ThermostatsDevices.toString()},
-      {"category":categories.CamerasDevices.toString()},
-      {"category":categories.OtherDevices.toString()}
+      {"category":categories.SecurityDevices.toString(),"icon":"assets/img/icons/lock.svg"},
+      {"category":categories.ThermostatsDevices.toString(),"icon":"assets/img/icons/therm.svg"},
+      {"category":categories.CamerasDevices.toString(),"icon":"assets/img/icons/videocam.svg"},
+      {"category":categories.OtherDevices.toString(),"icon":"assets/img/icons/git-commit.svg"}
     ];
 
     for (let category of CategoryList) {
-      this.Categories.push(category.category);
+      this.Categories.push(category);
     }
 
-    // console.log(this.Categories);
+     console.log(this.Categories);
 
     this.form = formBuilder.group({
       //profilePic: [''],
       DeviceName: ['', Validators.required],
       about: ['', Validators.required],
       status: false,
-      category: ['']
+      category: ['', Validators.required]
     });
 
     // Watch the form for changes, and

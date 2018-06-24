@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, ModalController, NavController } from 'ionic-angular';
 
-import { Device } from '../../models/device';
+import { Device, categories } from '../../models/device';
 import { Devices } from '../../providers/devices';
 import { ItemCreatePage } from '../../pages/item-create/item-create';
 
@@ -12,11 +12,38 @@ import { ItemCreatePage } from '../../pages/item-create/item-create';
 })
 export class ListMasterPage {
   currentItems: Device[];
+  Categories : string[] = [];
 
   constructor(public navCtrl: NavController, public items: Devices, public modalCtrl: ModalController) {
     this.currentItems = this.items.query();
-    console.log(this.currentItems);
+    let CategoryList = [
+      {"category":categories.SecurityDevices.toString()},
+      {"category":categories.ThermostatsDevices.toString()},
+      {"category":categories.CamerasDevices.toString()},
+      {"category":categories.OtherDevices.toString()}
+    ];
+
+    for (let category of CategoryList) {
+      this.Categories.push(category.category);
+    }
+
+    this.createLists("Other Devices");
+    // console.log(this.currentItems);
+    console.log(this.Categories);
   }
+
+  createLists(category: String){
+      let categoryArray: Device[] = [];
+      for(let item of this.currentItems){
+          if (item.category == category){
+            categoryArray.push(item);
+          }
+      }
+      // console.log(categoryArray);
+      return categoryArray;
+  }
+
+
 
   /**
    * The view loaded, let's query our items for the list

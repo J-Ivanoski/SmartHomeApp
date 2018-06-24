@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 import { Component } from '@angular/core';
 import { ModalController, NavController } from 'ionic-angular';
+import { categories } from '../../models/device';
 import { Devices } from '../../providers/devices';
 import { ItemCreatePage } from '../../pages/item-create/item-create';
 var ListMasterPage = (function () {
@@ -16,9 +17,33 @@ var ListMasterPage = (function () {
         this.navCtrl = navCtrl;
         this.items = items;
         this.modalCtrl = modalCtrl;
+        this.Categories = [];
         this.currentItems = this.items.query();
-        console.log(this.currentItems);
+        var CategoryList = [
+            { "category": categories.SecurityDevices.toString() },
+            { "category": categories.ThermostatsDevices.toString() },
+            { "category": categories.CamerasDevices.toString() },
+            { "category": categories.OtherDevices.toString() }
+        ];
+        for (var _i = 0, CategoryList_1 = CategoryList; _i < CategoryList_1.length; _i++) {
+            var category = CategoryList_1[_i];
+            this.Categories.push(category.category);
+        }
+        this.createLists("Other Devices");
+        // console.log(this.currentItems);
+        console.log(this.Categories);
     }
+    ListMasterPage.prototype.createLists = function (category) {
+        var categoryArray = [];
+        for (var _i = 0, _a = this.currentItems; _i < _a.length; _i++) {
+            var item = _a[_i];
+            if (item.category == category) {
+                categoryArray.push(item);
+            }
+        }
+        // console.log(categoryArray);
+        return categoryArray;
+    };
     /**
      * The view loaded, let's query our items for the list
      */
@@ -54,7 +79,7 @@ var ListMasterPage = (function () {
     };
     ListMasterPage = __decorate([
         Component({
-            selector: 'page-list-master',template:/*ion-inline-start:"/home/jovica/Ionic/SmartHomeApp/src/pages/list-master/list-master.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ \'All Devices\' }}</ion-title>\n\n    <ion-buttons end>\n      <button ion-button icon-only (click)="addItem()">\n        <ion-icon name="add"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content>\n\n  <ion-list>\n    <ion-item-sliding *ngFor="let item of currentItems">\n      <ion-item>\n        <ion-avatar item-start>\n          <img [src]="item.profilePic" />\n        </ion-avatar>\n        <ion-label>\n          <h2>{{item.DeviceName}}</h2>\n          <p>{{item.about}}</p>\n        </ion-label>\n         <ion-toggle checked={{item.status}}></ion-toggle>\n        <ion-note item-end *ngIf="item.note">{{item.note}}</ion-note>\n      </ion-item>\n\n      <ion-item-options>\n        <button ion-button color="danger" (click)="deleteItem(item)">\n          {{ \'DELETE_BUTTON\' }}\n        </button>\n      </ion-item-options>\n    </ion-item-sliding>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/jovica/Ionic/SmartHomeApp/src/pages/list-master/list-master.html"*/
+            selector: 'page-list-master',template:/*ion-inline-start:"/home/jovica/IonicProjects/SmartHomeApp/src/pages/list-master/list-master.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>{{ \'All Devices\' }}</ion-title>\n\n    <ion-buttons end>\n      <button ion-button icon-only (click)="addItem()">\n        <ion-icon name="add"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content>\n\n  <div *ngFor="let items of Categories">\n    <ion-item-divider color="light"> {{items}}</ion-item-divider>\n    <ion-list *ngFor="let item of createLists(items)">\n      <ion-item-sliding>\n        <ion-item>\n          <ion-avatar item-start>\n            <img [src]="item.profilePic" />\n          </ion-avatar>\n          <ion-label>\n            <h2>{{item.DeviceName}}</h2>\n            <p>{{item.about}}</p>\n          </ion-label>\n           <ion-toggle checked={{item.status}}></ion-toggle>\n          <ion-note item-end *ngIf="item.note">{{item.note}}</ion-note>\n        </ion-item>\n\n        <ion-item-options>\n          <button ion-button color="danger" (click)="deleteItem(item)">\n            {{ \'DELETE_BUTTON\' }}\n          </button>\n        </ion-item-options>\n      </ion-item-sliding>\n    </ion-list>\n  </div>\n</ion-content>\n<!-- <ion-list >\n  <div>\n    <div>There are {{currentItems.length}} items in total.</div>\n  </div>\n  <ion-item-divider color="light"> {{item.category}}</ion-item-divider>\n  <ion-item-sliding>\n    <ion-item>\n      <ion-avatar item-start>\n        <img [src]="item.profilePic" />\n      </ion-avatar>\n      <ion-label>\n        <h2>{{item.DeviceName}}</h2>\n        <p>{{item.about}}</p>\n        <p> {{item.category}} </p>\n      </ion-label>\n       <ion-toggle checked={{item.status}}></ion-toggle>\n      <ion-note item-end *ngIf="item.note">{{item.note}}</ion-note>\n    </ion-item>\n\n    <ion-item-options>\n      <button ion-button color="danger" (click)="deleteItem(item)">\n        {{ \'DELETE_BUTTON\' }}\n      </button>\n    </ion-item-options>\n  </ion-item-sliding>\n</ion-list> -->\n'/*ion-inline-end:"/home/jovica/IonicProjects/SmartHomeApp/src/pages/list-master/list-master.html"*/
         }),
         __metadata("design:paramtypes", [NavController, Devices, ModalController])
     ], ListMasterPage);

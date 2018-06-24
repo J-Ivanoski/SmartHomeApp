@@ -28,7 +28,7 @@ export class ListMasterPage {
     }
 
     this.createLists("Other Devices");
-    console.log(this.currentItems);
+    // console.log(this.currentItems);
     console.log(this.Categories);
   }
 
@@ -39,7 +39,7 @@ export class ListMasterPage {
             categoryArray.push(item);
           }
       }
-      console.log(categoryArray);
+      // console.log(categoryArray);
       return categoryArray;
   }
 

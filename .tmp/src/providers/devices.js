@@ -11,7 +11,6 @@ import { Injectable } from '@angular/core';
 import { Device, categories, SecuritySystem } from '../models/device';
 var Devices = (function () {
     function Devices() {
-        // this.securitySystem.constructor(false);
         this.securitySystem = new SecuritySystem();
         this.items = [];
         this.defaultItem = {
