@@ -95,6 +95,8 @@ export enum categories{
   OtherDevices = "Other Devices"
 }
 
+
+
 export interface Device {
   [prop: string]: any;
 }

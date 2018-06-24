@@ -14,25 +14,54 @@
 
 <ion-content>
 
-  <ion-list>
-    <ion-item-sliding *ngFor="let item of currentItems">
-      <ion-item>
-        <ion-avatar item-start>
-          <img [src]="item.profilePic" />
-        </ion-avatar>
-        <ion-label>
-          <h2>{{item.DeviceName}}</h2>
-          <p>{{item.about}}</p>
-        </ion-label>
-         <ion-toggle checked={{item.status}}></ion-toggle>
-        <ion-note item-end *ngIf="item.note">{{item.note}}</ion-note>
-      </ion-item>
+  <div *ngFor="let items of Categories">
+    <ion-item-divider color="light"> {{items}}</ion-item-divider>
+    <ion-list *ngFor="let item of createLists(items)">
+      <ion-item-sliding>
+        <ion-item>
+          <ion-avatar item-start>
+            <img [src]="item.profilePic" />
+          </ion-avatar>
+          <ion-label>
+            <h2>{{item.DeviceName}}</h2>
+            <p>{{item.about}}</p>
+          </ion-label>
+           <ion-toggle checked={{item.status}}></ion-toggle>
+          <ion-note item-end *ngIf="item.note">{{item.note}}</ion-note>
+        </ion-item>
 
-      <ion-item-options>
-        <button ion-button color="danger" (click)="deleteItem(item)">
-          {{ 'DELETE_BUTTON' }}
-        </button>
-      </ion-item-options>
-    </ion-item-sliding>
-  </ion-list>
+        <ion-item-options>
+          <button ion-button color="danger" (click)="deleteItem(item)">
+            {{ 'DELETE_BUTTON' }}
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </div>
 </ion-content>
+<!-- <ion-list >
+  <div>
+    <div>There are {{currentItems.length}} items in total.</div>
+  </div>
+  <ion-item-divider color="light"> {{item.category}}</ion-item-divider>
+  <ion-item-sliding>
+    <ion-item>
+      <ion-avatar item-start>
+        <img [src]="item.profilePic" />
+      </ion-avatar>
+      <ion-label>
+        <h2>{{item.DeviceName}}</h2>
+        <p>{{item.about}}</p>
+        <p> {{item.category}} </p>
+      </ion-label>
+       <ion-toggle checked={{item.status}}></ion-toggle>
+      <ion-note item-end *ngIf="item.note">{{item.note}}</ion-note>
+    </ion-item>
+
+    <ion-item-options>
+      <button ion-button color="danger" (click)="deleteItem(item)">
+        {{ 'DELETE_BUTTON' }}
+      </button>
+    </ion-item-options>
+  </ion-item-sliding>
+</ion-list> -->

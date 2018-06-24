@@ -4,7 +4,7 @@ import { Device, categories, SecuritySystem } from '../models/device';
 
 @Injectable()
 export class Devices {
-  
+
   securitySystem: SecuritySystem = new SecuritySystem();
   items: Device[] = [];
 
@@ -19,7 +19,7 @@ export class Devices {
 
 
   constructor() {
-    
+
     let items = [
       {
         "DeviceName": "outdoor_light",
