@@ -10,31 +10,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Component } from '@angular/core';
 import { ActionSheetController, Config, NavController } from 'ionic-angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
-import { ConferenceData } from '../../providers/conference-data';
-import { SessionDetailPage } from '../session-detail/session-detail';
-import { SpeakerDetailPage } from '../speaker-detail/speaker-detail';
 ;
 var SpeakerListPage = (function () {
-    function SpeakerListPage(actionSheetCtrl, navCtrl, confData, config, inAppBrowser) {
+    function SpeakerListPage(actionSheetCtrl, navCtrl, config, inAppBrowser) {
         this.actionSheetCtrl = actionSheetCtrl;
         this.navCtrl = navCtrl;
-        this.confData = confData;
         this.config = config;
         this.inAppBrowser = inAppBrowser;
         this.speakers = [];
     }
-    SpeakerListPage.prototype.ionViewDidLoad = function () {
-        var _this = this;
-        this.confData.getSpeakers().subscribe(function (speakers) {
-            _this.speakers = speakers;
-        });
-    };
-    SpeakerListPage.prototype.goToSessionDetail = function (session) {
-        this.navCtrl.push(SessionDetailPage, { sessionId: session.id });
-    };
-    SpeakerListPage.prototype.goToSpeakerDetail = function (speaker) {
-        this.navCtrl.push(SpeakerDetailPage, { speakerId: speaker.id });
-    };
     SpeakerListPage.prototype.goToSpeakerTwitter = function (speaker) {
         this.inAppBrowser.create("https://twitter.com/" + speaker.twitter, '_blank');
     };
@@ -91,7 +75,6 @@ var SpeakerListPage = (function () {
         }),
         __metadata("design:paramtypes", [ActionSheetController,
             NavController,
-            ConferenceData,
             Config,
             InAppBrowser])
     ], SpeakerListPage);

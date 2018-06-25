@@ -11,7 +11,6 @@ import { Component, ViewChild } from '@angular/core';
 import { Events, MenuController, Nav, Platform } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Storage } from '@ionic/storage';
-//import { AboutPage } from '../pages/about/about';
 import { AccountPage } from '../pages/account/account';
 import { LoginPage } from '../pages/login/login';
 import { MapPage } from '../pages/map/map';
@@ -21,18 +20,15 @@ import { TutorialPage } from '../pages/tutorial/tutorial';
 import { SchedulePage } from '../pages/schedule/schedule';
 import { SpeakerListPage } from '../pages/speaker-list/speaker-list';
 import { SupportPage } from '../pages/support/support';
-import { ConferenceData } from '../providers/conference-data';
 import { UserData } from '../providers/user-data';
-//import { Devices } from '../providers/devices';
 import { ListMasterPage } from '../pages/list-master/list-master';
 var ConferenceApp = (function () {
-    function ConferenceApp(events, userData, menu, platform, confData, storage, splashScreen) {
+    function ConferenceApp(events, userData, menu, platform, storage, splashScreen) {
         var _this = this;
         this.events = events;
         this.userData = userData;
         this.menu = menu;
         this.platform = platform;
-        this.confData = confData;
         this.storage = storage;
         this.splashScreen = splashScreen;
         // List of pages that can be navigated to from the left menu
@@ -65,8 +61,6 @@ var ConferenceApp = (function () {
             }
             _this.platformReady();
         });
-        // load the conference data
-        confData.load();
         // decide which menu items should be hidden by current login status stored in local storage
         this.userData.hasLoggedIn().then(function (hasLoggedIn) {
             _this.enableMenu(hasLoggedIn === true);
@@ -154,7 +148,6 @@ var ConferenceApp = (function () {
             UserData,
             MenuController,
             Platform,
-            ConferenceData,
             Storage,
             SplashScreen])
     ], ConferenceApp);

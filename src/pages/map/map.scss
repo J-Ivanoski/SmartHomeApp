@@ -22,6 +22,15 @@
     color: #fff;
   }
 
+  ion-card > img {
+    /* if i want fixed box for cameras just uncomment min-width and max-width
+    but be carefull you need to do for all resolutions */
+    // min-width: 320px;
+    // max-width: 320px;
+    min-block-size: 300px;
+    max-block-size: 300px;
+  }
+
 }
 //
 // page-map ion-content {

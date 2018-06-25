@@ -8,24 +8,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component, ViewChild } from '@angular/core';
-import { AlertController, App, List, ModalController, NavController, ToastController, LoadingController } from 'ionic-angular';
+import { AlertController, App, List, ModalController, NavController, ToastController, LoadingController, } from 'ionic-angular';
 /*
   To learn how to use third party libs in an
   Ionic app check out our docs here: http://ionicframework.com/docs/v2/resources/third-party-libs/
 */
 // import moment from 'moment';
-import { ConferenceData } from '../../providers/conference-data';
 import { UserData } from '../../providers/user-data';
 import { Devices } from '../../providers/devices'; //data
 var SchedulePage = (function () {
-    function SchedulePage(alertCtrl, app, loadingCtrl, modalCtrl, navCtrl, toastCtrl, confData, user, devices) {
+    function SchedulePage(alertCtrl, app, loadingCtrl, modalCtrl, navCtrl, toastCtrl, user, devices) {
         this.alertCtrl = alertCtrl;
         this.app = app;
         this.loadingCtrl = loadingCtrl;
         this.modalCtrl = modalCtrl;
         this.navCtrl = navCtrl;
         this.toastCtrl = toastCtrl;
-        this.confData = confData;
         this.user = user;
         this.devices = devices;
         this.dayIndex = 0;
@@ -51,23 +49,6 @@ var SchedulePage = (function () {
     SchedulePage.prototype.closeGarageDoors = function () {
         this.devices.garageDoors("close");
     };
-    SchedulePage.prototype.doRefresh = function (refresher) {
-        var _this = this;
-        this.confData.getTimeline(this.dayIndex, this.queryText, this.excludeTracks, this.segment).subscribe(function (data) {
-            _this.shownSessions = data.shownSessions;
-            _this.groups = data.groups;
-            // simulate a network request that would take longer
-            // than just pulling from out local json file
-            setTimeout(function () {
-                refresher.complete();
-                var toast = _this.toastCtrl.create({
-                    message: 'Sessions have been updated.',
-                    duration: 3000
-                });
-                toast.present();
-            }, 1000);
-        });
-    };
     __decorate([
         ViewChild('scheduleList', { read: List }),
         __metadata("design:type", List)
@@ -82,11 +63,31 @@ var SchedulePage = (function () {
             ModalController,
             NavController,
             ToastController,
-            ConferenceData,
             UserData,
             Devices])
     ], SchedulePage);
     return SchedulePage;
 }());
 export { SchedulePage };
+/*
+  doRefresh(refresher: Refresher) {
+    this.confData.getTimeline(this.dayIndex, this.queryText, this.excludeTracks, this.segment).subscribe((data: any) => {
+      this.shownSessions = data.shownSessions;
+      this.groups = data.groups;
+
+      // simulate a network request that would take longer
+      // than just pulling from out local json file
+      setTimeout(() => {
+        refresher.complete();
+
+        const toast = this.toastCtrl.create({
+          message: 'Sessions have been updated.',
+          duration: 3000
+        });
+        toast.present();
+      }, 1000);
+    });
+  }
+}
+*/ 
 //# sourceMappingURL=schedule.js.map

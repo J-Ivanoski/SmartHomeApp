@@ -43,30 +43,29 @@ var Devices = (function () {
                 "category": categories.SecurityDevices.toString()
             },
             {
-                "DeviceName": "Eva Eagle",
-                //"profilePic": "assets/img/speakers/eagle.jpg",
-                "about": "Eva is an Eagle.",
+                "DeviceName": "Living Room Camera",
+                "about": "A camera to monitor the living room.",
                 "status": "false",
                 "category": categories.CamerasDevices.toString()
             },
             {
-                "DeviceName": "Ellie Elephant",
+                "DeviceName": "Hallway Camera",
                 //"profilePic": "assets/img/speakers/elephant.jpg",
-                "about": "Ellie is an Elephant.",
+                "about": "A camera to monitor the hallway.",
                 "status": "false",
                 "category": categories.CamerasDevices.toString()
             },
             {
-                "DeviceName": "Molly Mouse",
+                "DeviceName": "Main Air Conditioner",
                 //"profilePic": "assets/img/speakers/mouse.jpg",
-                "about": "Molly is a Mouse.",
+                "about": "The main Air Conditioner.",
                 "status": "true",
                 "category": categories.ThermostatsDevices.toString()
             },
             {
-                "DeviceName": "Paul Puppy",
+                "DeviceName": "Living Room Lights",
                 //"profilePic": "assets/img/speakers/puppy.jpg",
-                "about": "Paul is a Puppy.",
+                "about": "The lights in the Living Room.",
                 "status": "true",
                 "category": categories.OtherDevices.toString()
             }
