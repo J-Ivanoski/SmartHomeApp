@@ -7,6 +7,17 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="map-page">
-  <div style="height: 100%; width: 100%" #mapCanvas id="map_canvas"></div>
+<ion-content class="card-background-page">
+  <ion-grid >
+    <ion-row>
+      <div *ngFor="let item of cameraItems; let i=index">
+        <ion-col col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6>
+          <ion-card>
+            <img src="{{'assets/camera/camera' + (i + 1) + '.jpg'}}">
+            <div class="card-title"> <strong>{{item.DeviceName}}</strong> </div>
+          </ion-card>
+        </ion-col>
+      </div>
+    </ion-row>
+  </ion-grid>
 </ion-content>
