@@ -27,9 +27,9 @@ export class ListMasterPage {
       this.Categories.push(category.category);
     }
 
-    this.createLists("Other Devices");
+    // this.createLists("Other Devices");
     // console.log(this.currentItems);
-    console.log(this.Categories);
+    // console.log(this.Categories);
   }
 
   createLists(category: String){

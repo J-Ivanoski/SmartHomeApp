@@ -35,7 +35,7 @@ export class ItemCreatePage {
       this.Categories.push(category);
     }
 
-     console.log(this.Categories);
+    //  console.log(this.Categories);
 
     this.form = formBuilder.group({
       //profilePic: [''],

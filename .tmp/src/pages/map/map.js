@@ -30,8 +30,14 @@ var MapPage = (function () {
             this.Categories.push(category.category);
         }
         this.cameraItems = this.createLists("Camera Devices");
-        console.log(this.cameraItems);
+        // console.log(this.cameraItems);
     }
+    /** The view loaded, let's query our items for the list **/
+    MapPage.prototype.ionViewDidEnter = function () {
+        // Will be executed every time the user selects this tab
+        this.currentItems = this.items.query();
+        this.cameraItems = this.createLists("Camera Devices");
+    };
     MapPage.prototype.createLists = function (category) {
         var categoryArray = [];
         for (var _i = 0, _a = this.currentItems; _i < _a.length; _i++) {
@@ -50,7 +56,7 @@ var MapPage = (function () {
     };
     MapPage = __decorate([
         Component({
-            selector: 'page-map',template:/*ion-inline-start:"/home/jovica/IonicProjects/SmartHomeApp/src/pages/map/map.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Map</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content class="card-background-page">\n  <ion-grid >\n    <ion-row>\n      <div *ngFor="let item of cameraItems; let i=index">\n        <ion-col col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6>\n          <ion-card>\n            <img src="{{\'assets/camera/camera\' + (i + 1) + \'.jpg\'}}">\n            <div class="card-title"> <strong>{{item.DeviceName}}</strong> </div>\n          </ion-card>\n        </ion-col>\n      </div>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n'/*ion-inline-end:"/home/jovica/IonicProjects/SmartHomeApp/src/pages/map/map.html"*/
+            selector: 'page-map',template:/*ion-inline-start:"/home/jovica/Ionic/SmartHomeApp/src/pages/map/map.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Video footages</ion-title>\n    <!-- Add new viedo camera  -->\n    <!-- <ion-buttons end>\n      <button ion-button icon-only (click)="addItem()">\n        <ion-icon name="add"></ion-icon>\n      </button>\n    </ion-buttons> -->\n  </ion-navbar>\n</ion-header>\n\n<ion-content class="card-background-page">\n  <ion-grid >\n    <ion-row>\n        <ion-col *ngFor="let item of cameraItems; let i=index"  col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6>\n          <ion-card>\n            <img src="{{\'assets/camera/camera\' + (i + 1) + \'.jpg\'}}">\n            <div class="card-title"> <strong>{{item.DeviceName}}</strong> </div>\n          </ion-card>\n        </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n'/*ion-inline-end:"/home/jovica/Ionic/SmartHomeApp/src/pages/map/map.html"*/
         }),
         __metadata("design:paramtypes", [Platform, Devices, ModalController])
     ], MapPage);

@@ -1,4 +1,7 @@
 .card-background-page {
+  $phone: "(max-width: 768)";
+  $tablet: "(min-width: 768px) and (max-width: 1023px)";
+  $desktop: "(min-width: 1024px)";
 
   ion-card {
     position: relative;
@@ -22,14 +25,31 @@
     color: #fff;
   }
 
-  ion-card > img {
-    /* if i want fixed box for cameras just uncomment min-width and max-width
-    but be carefull you need to do for all resolutions */
-    // min-width: 320px;
-    // max-width: 320px;
-    min-block-size: 300px;
-    max-block-size: 300px;
+   ion-card > img:hover {
+    @media #{$desktop}{
+      opacity: 0.8;
+      filter: alpha(opacity=80); /* For IE8 and earlier */
+    }
   }
+
+  /* fixed box for cameras - we need to be carefull because all resolutions have diference sizes */
+  ion-card > img {
+    
+    @media #{$phone} {
+      min-block-size: 100px;
+      max-block-size: 100px;
+    }
+    @media #{$tablet} {
+      min-block-size: 200px;
+      max-block-size: 200px;
+    }
+    @media #{$desktop} {
+      min-block-size: 350px;
+      max-block-size: 350px;
+    }
+     
+  }
+ 
 
 }
 //

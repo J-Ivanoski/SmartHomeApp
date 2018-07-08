@@ -24,14 +24,21 @@ export class MapPage {
         {"category":categories.CamerasDevices.toString()},
         {"category":categories.OtherDevices.toString()}
       ];
-
+  
       for (let category of CategoryList) {
         this.Categories.push(category.category);
       }
+
       this.cameraItems = this.createLists("Camera Devices");
-      console.log(this.cameraItems);
+      // console.log(this.cameraItems);
     }
 
+    /** The view loaded, let's query our items for the list **/
+    ionViewDidEnter() {
+      // Will be executed every time the user selects this tab
+      this.currentItems = this.items.query();
+      this.cameraItems = this.createLists("Camera Devices");
+    }
 
   createLists(category: String){
       let categoryArray: Device[] = [];
