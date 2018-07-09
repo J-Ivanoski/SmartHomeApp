@@ -17,7 +17,7 @@
   <ion-grid >
     <ion-row>
         <ion-col *ngFor="let item of cameraItems; let i=index"  col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6>
-          <ion-card>
+          <ion-card (click)="openItem(item)">
             <img src="{{'assets/camera/camera' + (i + 1) + '.jpg'}}">
             <div class="card-title"> <strong>{{item.DeviceName}}</strong> </div>
           </ion-card>

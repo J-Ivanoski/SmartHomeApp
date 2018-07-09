@@ -23,6 +23,7 @@ import { SupportPage } from '../pages/support/support';
 
 import { ListMasterPage } from '../pages/list-master/list-master';
 import { ItemCreatePage } from '../pages/item-create/item-create';
+import { CameraDetailPage } from '../pages/camera-detail/camera-detail';
 
 import { UserData } from '../providers/user-data';
 import { Devices } from '../providers/devices';
@@ -41,7 +42,8 @@ import { Devices } from '../providers/devices';
     TutorialPage,
     SupportPage,
     ListMasterPage,
-    ItemCreatePage
+    ItemCreatePage,
+    CameraDetailPage
   ],
   imports: [
     BrowserModule,
@@ -58,7 +60,8 @@ import { Devices } from '../providers/devices';
         { component: SupportPage, name: 'SupportPage', segment: 'support' },
         { component: LoginPage, name: 'LoginPage', segment: 'login' },
         { component: AccountPage, name: 'AccountPage', segment: 'account' },
-        { component: SignupPage, name: 'SignupPage', segment: 'signup' }
+        { component: SignupPage, name: 'SignupPage', segment: 'signup' },
+        { component: CameraDetailPage, name: 'CameraDetailPage', segment: 'camera-detail'}
       ]
     }),
     IonicStorageModule.forRoot()
@@ -76,7 +79,8 @@ import { Devices } from '../providers/devices';
     TutorialPage,
     SupportPage,
     ListMasterPage,
-    ItemCreatePage
+    ItemCreatePage,
+    CameraDetailPage
   ],
   providers: [
     { provide: ErrorHandler, useClass: IonicErrorHandler },

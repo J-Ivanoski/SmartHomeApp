@@ -18,7 +18,7 @@ var Devices = (function () {
             //"profilePic": "assets/img/speakers/bear.jpg", //namesto sliki mozeme ikoni za sekoja kategorija ili tip na senzor
             "about": "a light at the tree house",
             "status": "false",
-            "category": categories.SecurityDevices.toString()
+            "category": categories.SecurityDevices.toString(),
         };
         var items = [
             {
@@ -46,14 +46,16 @@ var Devices = (function () {
                 "DeviceName": "Living Room Camera",
                 "about": "A camera to monitor the living room.",
                 "status": "false",
-                "category": categories.CamerasDevices.toString()
+                "category": categories.CamerasDevices.toString(),
+                "index": "1"
             },
             {
                 "DeviceName": "Hallway Camera",
                 //"profilePic": "assets/img/speakers/elephant.jpg",
                 "about": "A camera to monitor the hallway.",
                 "status": "false",
-                "category": categories.CamerasDevices.toString()
+                "category": categories.CamerasDevices.toString(),
+                "index": "2"
             },
             {
                 "DeviceName": "Main Air Conditioner",

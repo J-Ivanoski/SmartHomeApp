@@ -1,0 +1,46 @@
+.page-camera-detail {
+    $phone: "(max-width: 768)";
+    $tablet: "(min-width: 768px) and (max-width: 1023px)";
+    $desktop: "(min-width: 1024px)";
+
+    ion-card {
+      position: relative;
+      text-align: center;
+    }
+
+    .card-title {
+      position: absolute;
+      top: 36%;
+      font-size: 2.0em;
+      width: 100%;
+      font-weight: bold;
+      color: #fff;
+    }
+  
+    .card-subtitle {
+      font-size: 1.0em;
+      position: absolute;
+      top: 52%;
+      width: 100%;
+      color: #fff;
+    }
+     img {
+    
+        @media #{$phone} {
+          image-resolution: 500dpi;
+          min-block-size: 500px;
+          max-block-size: 500px;
+          
+        }
+        @media #{$tablet} {
+          min-block-size: 500px;
+          max-block-size: 500px;
+        }
+        @media #{$desktop} {
+          min-block-size: 650px;
+          max-block-size: 650px;
+        }
+         
+      }
+   
+}

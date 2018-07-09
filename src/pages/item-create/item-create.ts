@@ -42,7 +42,8 @@ export class ItemCreatePage {
       DeviceName: ['', Validators.required],
       about: ['', Validators.required],
       status: false,
-      category: ['', Validators.required]
+      category: ['', Validators.required],
+      index: ['']
     });
 
     // Watch the form for changes, and

@@ -1,0 +1,20 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{cameraItem.DeviceName}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-card >
+        <!-- <div class="item-profile" text-center #profilePic [style.background-image]="'url(' + cameraItem.index + ')'"> -->
+          <!-- </div> -->
+        <img src="{{'assets/camera/camera' + cameraItem.index + '.jpg'}}">
+        <!-- <div class="card-title"> <strong>{{item.DeviceName}}</strong> </div> -->
+        <div class="item-detail" padding>
+            <h2>{{cameraItem.about}}</h2>
+          </div>
+    </ion-card>
+</ion-content>

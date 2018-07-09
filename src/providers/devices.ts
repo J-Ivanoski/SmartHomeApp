@@ -13,7 +13,7 @@ export class Devices {
     //"profilePic": "assets/img/speakers/bear.jpg", //namesto sliki mozeme ikoni za sekoja kategorija ili tip na senzor
     "about": "a light at the tree house",
     "status": "false",
-    "category": categories.SecurityDevices.toString()
+    "category": categories.SecurityDevices.toString(),
 
   };
 
@@ -46,7 +46,8 @@ export class Devices {
         "DeviceName": "Living Room Camera",
         "about": "A camera to monitor the living room.",
         "status": "false",
-        "category": categories.CamerasDevices.toString()
+        "category": categories.CamerasDevices.toString(),
+        "index": "1"
 
       },
       {
@@ -54,7 +55,8 @@ export class Devices {
         //"profilePic": "assets/img/speakers/elephant.jpg",
         "about": "A camera to monitor the hallway.",
         "status": "false",
-        "category": categories.CamerasDevices.toString()
+        "category": categories.CamerasDevices.toString(),
+        "index": "2"
 
       },
       {
