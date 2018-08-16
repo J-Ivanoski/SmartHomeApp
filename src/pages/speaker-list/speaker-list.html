@@ -3,20 +3,26 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Speakers</ion-title>
+    <ion-title>Thermostats</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content class="outer-content speaker-list">
-  <ion-list>
-    <ion-item>
-         <ion-range min="0" max="100" step="1" pin="true" [(ngModel)]="contrast" color="danger">
-           <ion-icon range-left small color="danger" name="thermometer"></ion-icon>
-           <ion-icon range-right color="danger" name="thermometer"></ion-icon>
-         </ion-range>
-   </ion-item>
-   <ion-item>
-   
-   </ion-item>
-  </ion-list>
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let item of thermostatItems; let i=index" col-12>
+        <h1> {{ item.DeviceName }} </h1>
+        <ion-item>
+            <ion-range min="15" max="30" step="1" pin="true" [(ngModel)]='item.index' color="danger">
+              <ion-icon range-left  color="danger" name="thermometer"></ion-icon>
+              <ion-icon range-right color="danger" name="thermometer"></ion-icon>
+            </ion-range>
+        </ion-item>
+        <ion-label> Desired temperature: {{ item.index }} </ion-label>
+        <button (click)="decrement(item)"><ion-icon name="remove-circle" ></ion-icon></button>
+        <button (click)="increment(item)"><ion-icon name="add-circle" ></ion-icon></button>
+    <!--    <ion-label> Current temperature: {{ randomized() }} </ion-label>  -->
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
