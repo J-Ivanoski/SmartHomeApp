@@ -50,14 +50,14 @@ export class SecuritySystem{
     return this.SecuritySystemServices;
   }
 
-  getSecuritySystemStatusHummanReadable(): string{
-    let securitySystemStatusHummanReadable:string;
+  getSecuritySystemStatusHumanReadable(): string{
+    let securitySystemStatusHumanReadable:string;
     if(this.getSecuritySystemStatus()==false){
-      securitySystemStatusHummanReadable = "Disarmed";
+      securitySystemStatusHumanReadable = "Disarmed";
     } else{
-      securitySystemStatusHummanReadable = "Armed";
+      securitySystemStatusHumanReadable = "Armed";
     }
-    return securitySystemStatusHummanReadable;
+    return securitySystemStatusHumanReadable;
   }
 
   DisarmTheSecuritySystem(SecuritySystemServices: boolean){
@@ -72,7 +72,7 @@ export class SecuritySystem{
     return this.GarageDoors;
   }
 
-  getGarageDoorsStatusHummanReadable():string{
+  getGarageDoorsStatusHumanReadable():string{
     let garageDoorsStatus:string;
     if(this.getGarageDoorsStatus()==false){
       garageDoorsStatus = "Closed";
@@ -91,7 +91,7 @@ export class SecuritySystem{
 export class categoriesWithIcons {
   category: any;
   icon: any;
-  
+
   constructor(){
 
   }

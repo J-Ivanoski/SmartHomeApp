@@ -17,37 +17,37 @@
                       <button class="fit-left" ion-button color="danger" (click)="disarm()">Disarm <ion-icon name="unlock"></ion-icon></button>
                     </ion-item-options>
                   <ion-item>
-        
+
                     <ion-grid>
                       <ion-row>
                         <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
                           <ion-icon class="float-left" name="arrow-back"></ion-icon>
                         </ion-col>
-        
+
                         <ion-col col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6>
                             <div class="check text-center">
                                 <img *ngIf="this.devices.securitySystem.getSecuritySystemStatus();" class="cls" src="assets/img/check.png" alt="arm icon" />
                                 <img *ngIf="!this.devices.securitySystem.getSecuritySystemStatus();" class="cls" src="assets/img/uncheck.png" alt="disarm icon" />
                             </div>
                         </ion-col>
-        
+
                         <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>
                             <ion-icon class="float-right" name="arrow-forward"></ion-icon>
                         </ion-col>
-        
+
                         </ion-row>
                       </ion-grid>
-        
+
                   </ion-item>
                   <ion-item-options side="right">
                     <button class="fit-right" ion-button color="success" (click)="arm()">Arm <ion-icon name="key"></ion-icon></button>
                   </ion-item-options>
                 </ion-item-sliding>
-        
+
               <ion-grid>
                   <ion-row class="no-margin-top" col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12>
                     <ion-col class="text-center">
-                      <h3 ion-text><strong>{{this.devices.securitySystem.getSecuritySystemStatusHummanReadable()}}</strong></h3>
+                      <h3 ion-text><strong>{{this.devices.securitySystem.getSecuritySystemStatusHumanReadable()}}</strong></h3>
                     </ion-col>
                   </ion-row>
                   <ion-row>
@@ -61,13 +61,13 @@
                     <ion-col col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6>
                       <div class="text-center">
                         <p ion-text>Garage Doors</p>
-                        <button *ngIf="this.devices.securitySystem.getGarageDoorsStatus()" ion-button round (click)="closeGarageDoors()">{{this.devices.securitySystem.getGarageDoorsStatusHummanReadable()}} <ion-icon class="clui" name="home"></ion-icon></button>
-                        <button *ngIf="!this.devices.securitySystem.getGarageDoorsStatus()" ion-button round (click)="openGarageDoors()" color="danger" >{{this.devices.securitySystem.getGarageDoorsStatusHummanReadable()}} <ion-icon class="clui" name="home"></ion-icon></button>
+                        <button *ngIf="this.devices.securitySystem.getGarageDoorsStatus()" ion-button round (click)="closeGarageDoors()">{{this.devices.securitySystem.getGarageDoorsStatusHumanReadable()}} <ion-icon class="clui" name="home"></ion-icon></button>
+                        <button *ngIf="!this.devices.securitySystem.getGarageDoorsStatus()" ion-button round (click)="openGarageDoors()" color="danger" >{{this.devices.securitySystem.getGarageDoorsStatusHumanReadable()}} <ion-icon class="clui" name="home"></ion-icon></button>
                       </div>
                     </ion-col>
                   </ion-row>
                 </ion-grid>
-            
+
           </ion-list>
       </ion-col>
     </ion-row>

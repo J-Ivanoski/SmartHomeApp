@@ -64,7 +64,17 @@ export class Devices {
         //"profilePic": "assets/img/speakers/mouse.jpg",
         "about": "The main Air Conditioner.",
         "status": "true",
-        "category": categories.ThermostatsDevices.toString()
+        "category": categories.ThermostatsDevices.toString(),
+        "index" : 20
+
+      },
+      {
+        "DeviceName": "Garage Conditioner",
+        //"profilePic": "assets/img/speakers/mouse.jpg",
+        "about": "The Garage Conditioner.",
+        "status": "false",
+        "category": categories.ThermostatsDevices.toString(),
+        "index" : 25
 
       },
       {
@@ -120,7 +130,7 @@ export class Devices {
         //   }
         // });
         this.securitySystem.OpenCloseGarageDoors(true);
-        return this.securitySystem.getGarageDoorsStatusHummanReadable();
+        return this.securitySystem.getGarageDoorsStatusHumanReadable();
       }
       else if(garageDoors.match("close")){
          //change status for that category
@@ -130,7 +140,7 @@ export class Devices {
         //   }
         // });
         this.securitySystem.OpenCloseGarageDoors(false);
-        return this.securitySystem.getGarageDoorsStatusHummanReadable();
+        return this.securitySystem.getGarageDoorsStatusHumanReadable();
       }
       else{
         //error handling
