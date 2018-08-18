@@ -26,7 +26,6 @@ export class SpeakerListPage {
   currentItems: Device[];
   Categories : string[] = [];
   thermostatItems: Device[];
-  currentTemperature: number;
   temperatureFormat = [];
   selectedFormat: any;
   devices: Devices;
@@ -155,8 +154,6 @@ export class SpeakerListPage {
     console.log("value:" + value);
     return value;
   }
-
-
 }
 
 

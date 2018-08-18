@@ -21,16 +21,23 @@
           <ion-col>
             <ion-item>
             <!--
-                <ion-range [ngModel]="getDesiredTemperature(item.index)"
-                min="{{ MIN_TEMP }}" max="{{ MAX_TEMP }}" step="1" pin="true"  color="danger">
+                Does not behave propperly when fahrehneit is selected (no 2-way bond)
               -->
-                <ion-range [(ngModel)]="item.index" min="{{ MIN_TEMP }}" max="{{ MAX_TEMP }}" step="1" pin="true"  color="danger">
-
+                <ion-range *ngIf="TEMPERATURE_FORMAT=='c'" [(ngModel)]="item.index" min="{{ MIN_TEMP }}" max="{{ MAX_TEMP }}" step="1" pin="true"  color="danger">
                   <ion-icon range-left  color="danger" name="thermometer"></ion-icon>
                   <ion-icon range-right color="danger" name="thermometer"></ion-icon>
                 </ion-range>
+
+
+                <ion-range *ngIf="TEMPERATURE_FORMAT=='f'" [ngModel]="getDesiredTemperature(item.index)"
+                min="{{ MIN_TEMP }}" max="{{ MAX_TEMP }}" step="1" pin="true"  color="danger">
+                  <ion-icon range-left  color="danger" name="thermometer"></ion-icon>
+                  <ion-icon range-right color="danger" name="thermometer"></ion-icon>
+                </ion-range>
+
+
                 <ion-label> <strong>{{ item.DeviceName }}</strong> </ion-label>
-                <ion-label> Desired temperature: {{ getDesiredTemperature(item.index) }} &deg;</ion-label>
+                <ion-label> Desired temperature: {{ getDesiredTemperature(item.index) }} &deg;{{ TEMPERATURE_FORMAT.toUpperCase() }}</ion-label>
             </ion-item>
           </ion-col>
           <ion-col col-1>
