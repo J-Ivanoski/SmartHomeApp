@@ -20,8 +20,12 @@
         <ion-row *ngFor="let item of thermostatItems; let i=index">
           <ion-col>
             <ion-item>
+            <!--
                 <ion-range [ngModel]="getDesiredTemperature(item.index)"
-                    min="{{ MIN_TEMP }}" max="{{ MAX_TEMP }}" step="1" pin="true"  color="danger">
+                min="{{ MIN_TEMP }}" max="{{ MAX_TEMP }}" step="1" pin="true"  color="danger">
+              -->
+                <ion-range [(ngModel)]="item.index" min="{{ MIN_TEMP }}" max="{{ MAX_TEMP }}" step="1" pin="true"  color="danger">
+
                   <ion-icon range-left  color="danger" name="thermometer"></ion-icon>
                   <ion-icon range-right color="danger" name="thermometer"></ion-icon>
                 </ion-range>
