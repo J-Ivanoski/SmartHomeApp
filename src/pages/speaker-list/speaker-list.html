@@ -18,7 +18,7 @@
   </ion-list>
   <ion-grid>
         <ion-row *ngFor="let item of thermostatItems; let i=index">
-          <ion-col>
+          <ion-col col-sm-10 col-md-11 col-lg-11 col-xl-11 >
             <ion-item>
             <!--
                 Does not behave propperly when fahrehneit is selected (no 2-way bond)
@@ -40,7 +40,7 @@
                 <ion-label> Desired temperature: {{ getDesiredTemperature(item.index) }} &deg;{{ TEMPERATURE_FORMAT.toUpperCase() }}</ion-label>
             </ion-item>
           </ion-col>
-          <ion-col col-1>
+          <ion-col col-sm-2 col-md-1 col-lg-1 col-xl-1>
             <button (click)="increment(item)"><ion-icon name="add-circle" ></ion-icon></button> <br>
             <button (click)="decrement(item)"><ion-icon name="remove-circle" ></ion-icon></button>
             <!--<ion-label> Current temperature: {{ randomized() }} </ion-label>-->

@@ -23,8 +23,8 @@ export class SupportPage {
 
   ionViewDidEnter() {
     let toast = this.toastCtrl.create({
-      message: 'This does not actually send a support request.',
-      duration: 3000
+      message: 'If there is any techincal problems here you can contact the support team.',
+      duration: 3500
     });
     toast.present();
   }
@@ -37,7 +37,7 @@ export class SupportPage {
       this.submitted = false;
 
       let toast = this.toastCtrl.create({
-        message: 'Your support request has been sent.',
+        message: 'Your ticket request has been sent.',
         duration: 3000
       });
       toast.present();
@@ -55,7 +55,7 @@ export class SupportPage {
     return new Promise((resolve: any, reject: any) => {
       let alert = this.alertCtrl.create({
         title: 'Leave this page?',
-        message: 'Are you sure you want to leave this page? Your support message will not be submitted.'
+        message: 'Are you sure you want to leave this page? Your ticket message will not be submitted.'
       });
       alert.addButton({ text: 'Stay', handler: reject });
       alert.addButton({ text: 'Leave', role: 'cancel', handler: resolve });

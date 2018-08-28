@@ -18,6 +18,7 @@ export class ListMasterPage {
     this.currentItems = this.items.query();
     let CategoryList = [
       {"category":categories.SecurityDevices.toString()},
+      {"category":categories.DoorDevices.toString()},
       {"category":categories.ThermostatsDevices.toString()},
       {"category":categories.CamerasDevices.toString()},
       {"category":categories.OtherDevices.toString()}

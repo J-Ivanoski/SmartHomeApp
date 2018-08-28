@@ -37,9 +37,10 @@ export class Core_Device{
 
 @Injectable()
 export class SecuritySystem{
-  SecuritySystemServices: boolean;
 
+  SecuritySystemServices: boolean;
   GarageDoors: boolean;
+  
   //default constructor
   constructor(){
     this.SecuritySystemServices = true;
@@ -101,6 +102,7 @@ export enum categories{
   SecurityDevices = "Security Devices",
   ThermostatsDevices = "Thermostat Devices",
   CamerasDevices = "Camera Devices",
+  DoorDevices = "Door Devices",
   OtherDevices = "Other Devices"
 }
 

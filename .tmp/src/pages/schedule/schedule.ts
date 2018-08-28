@@ -44,14 +44,14 @@ export class SchedulePage {
 
     disarm() {
         this.devices.query("disarm");
-        // console.log(this.devices.query());
-        // console.log(this.devices.securitySystem.getSecuritySystemStatus());
+        //  console.log(this.devices.query());
+        //  console.log(this.devices.securitySystem.getSecuritySystemStatus();
     }
 
     arm() {
         this.devices.query("arm");
-        // console.log(this.devices.query());
-        // console.log(this.devices.securitySystem.getSecuritySystemStatus());
+        //  console.log(this.devices.query());
+        //  console.log(this.devices.securitySystem.getSecuritySystemStatus());
     }
 
     openGarageDoors() {

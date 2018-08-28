@@ -18,8 +18,8 @@ var SupportPage = (function () {
     }
     SupportPage.prototype.ionViewDidEnter = function () {
         var toast = this.toastCtrl.create({
-            message: 'This does not actually send a support request.',
-            duration: 3000
+            message: 'If there is any techincal problems here you can contact the support team.',
+            duration: 3500
         });
         toast.present();
     };
@@ -29,7 +29,7 @@ var SupportPage = (function () {
             this.supportMessage = '';
             this.submitted = false;
             var toast = this.toastCtrl.create({
-                message: 'Your support request has been sent.',
+                message: 'Your ticket request has been sent.',
                 duration: 3000
             });
             toast.present();
@@ -46,7 +46,7 @@ var SupportPage = (function () {
         return new Promise(function (resolve, reject) {
             var alert = _this.alertCtrl.create({
                 title: 'Leave this page?',
-                message: 'Are you sure you want to leave this page? Your support message will not be submitted.'
+                message: 'Are you sure you want to leave this page? Your ticket message will not be submitted.'
             });
             alert.addButton({ text: 'Stay', handler: reject });
             alert.addButton({ text: 'Leave', role: 'cancel', handler: resolve });
@@ -55,7 +55,7 @@ var SupportPage = (function () {
     };
     SupportPage = __decorate([
         Component({
-            selector: 'page-user',template:/*ion-inline-start:"/home/jovica/Ionic/SmartHomeApp/src/pages/support/support.html"*/'<ion-header>\n\n	<ion-navbar>\n		<button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n		<ion-title>Support</ion-title>\n	</ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n	<div class="logo">\n		<img src="assets/img/appicon.svg" alt="Ionic Logo">\n	</div>\n\n	<form #submitForm="ngForm" novalidate (ngSubmit)="submit(submitForm)">\n		<ion-list no-lines>\n			<ion-item>\n				<ion-label stacked color="primary">Enter your support message below</ion-label>\n				<ion-textarea [(ngModel)]="supportMessage" name="supportQuestion" #supportQuestion="ngModel" rows="6" required></ion-textarea>\n			</ion-item>\n		</ion-list>\n\n		<p ion-text [hidden]="supportQuestion.valid || submitted === false" color="danger" padding-left>\n			Support message is required\n		</p>\n\n		<div padding>\n			<button ion-button block type="submit">Submit</button>\n		</div>\n	</form>\n</ion-content>\n'/*ion-inline-end:"/home/jovica/Ionic/SmartHomeApp/src/pages/support/support.html"*/
+            selector: 'page-user',template:/*ion-inline-start:"/home/jovica/projects/IonicProjects/SmartHomeApp/src/pages/support/support.html"*/'<ion-header>\n\n	<ion-navbar>\n		<button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n		<ion-title>Support</ion-title>\n	</ion-navbar>\n\n</ion-header>\n\n\n<ion-content>\n	<div class="logo">\n		<!-- <img src="assets/img/appicon.svg" alt="Ionic Logo"> -->\n		<ion-icon color="primary" name="help"></ion-icon>\n		<p>Technical Issue<p>\n	</div>\n\n	<form #submitForm="ngForm" novalidate (ngSubmit)="submit(submitForm)">\n		<ion-list no-lines>\n			<ion-item>\n				<ion-label stacked color="primary">Describe your issue as message below</ion-label>\n				<ion-textarea [(ngModel)]="supportMessage" name="supportQuestion" #supportQuestion="ngModel" rows="6" required></ion-textarea>\n			</ion-item>\n		</ion-list>\n\n		<p ion-text [hidden]="supportQuestion.valid || submitted === false" color="danger" padding-left>\n			Support message is required\n		</p>\n\n		<div padding>\n			<button ion-button block type="submit">Open a ticket</button>\n		</div>\n	</form>\n</ion-content>\n'/*ion-inline-end:"/home/jovica/projects/IonicProjects/SmartHomeApp/src/pages/support/support.html"*/
         }),
         __metadata("design:paramtypes", [NavController,
             AlertController,

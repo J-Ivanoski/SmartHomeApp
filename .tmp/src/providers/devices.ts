@@ -43,6 +43,20 @@ export class Devices {
         "category": categories.SecurityDevices.toString()
       },
       {
+        "DeviceName": "Front Door",
+        //"profilePic": "assets/img/speakers/duck.jpg",
+        "about": "sensor for locking/unlocking at front door",
+        "status": "true",
+        "category": categories.SecurityDevices.toString()
+      },
+      {
+        "DeviceName": "Garage door",
+        //"profilePic": "assets/img/speakers/duck.jpg",
+        "about": "garage door sensor",
+        "status": "false",
+        "category": categories.DoorDevices.toString()
+      },
+      {
         "DeviceName": "Living Room Camera",
         "about": "A camera to monitor the living room.",
         "status": "false",
@@ -64,7 +78,17 @@ export class Devices {
         //"profilePic": "assets/img/speakers/mouse.jpg",
         "about": "The main Air Conditioner.",
         "status": "true",
-        "category": categories.ThermostatsDevices.toString()
+        "category": categories.ThermostatsDevices.toString(),
+        "index" : 20
+
+      },
+      {
+        "DeviceName": "Garage Conditioner",
+        //"profilePic": "assets/img/speakers/mouse.jpg",
+        "about": "The Garage Conditioner.",
+        "status": "false",
+        "category": categories.ThermostatsDevices.toString(),
+        "index" : 25
 
       },
       {
@@ -114,23 +138,23 @@ export class Devices {
         return this.securitySystem.getGarageDoorsStatus();
       }else if(garageDoors.match("open")){
         //change status for that category
-        // this.items.forEach(item => {
-        //   if(item.category == 1){
-        //     item.status = "false";
-        //   }
-        // });
+         this.items.forEach(item => {
+           if(item.category.match("Door Devices")){
+             item.status = "true";
+           }
+         });
         this.securitySystem.OpenCloseGarageDoors(true);
-        return this.securitySystem.getGarageDoorsStatusHummanReadable();
+        return this.securitySystem.getGarageDoorsStatusHumanReadable();
       }
       else if(garageDoors.match("close")){
          //change status for that category
-        // this.items.forEach(item => {
-        //   if(item.category == 1){
-        //     item.status = "false";
-        //   }
-        // });
+         this.items.forEach(item => {
+           if(item.category.match("Door Devices")){
+            item.status = "false";
+          }
+         });
         this.securitySystem.OpenCloseGarageDoors(false);
-        return this.securitySystem.getGarageDoorsStatusHummanReadable();
+        return this.securitySystem.getGarageDoorsStatusHumanReadable();
       }
       else{
         //error handling

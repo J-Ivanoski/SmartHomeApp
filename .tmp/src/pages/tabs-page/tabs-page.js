@@ -24,7 +24,7 @@ var TabsPage = (function () {
         this.mySelectedIndex = navParams.data.tabIndex || 0;
     }
     TabsPage = __decorate([
-        Component({template:/*ion-inline-start:"/home/jovica/Ionic/SmartHomeApp/src/pages/tabs-page/tabs-page.html"*/'<ion-tabs [selectedIndex]="mySelectedIndex" name="conference">\n  <ion-tab [root]="tab1Root" tabTitle="Security" tabIcon="ios-lock" tabUrlPath="conference-schedule"></ion-tab>\n  <ion-tab [root]="tab2Root" tabTitle="Thermostats" tabIcon="ios-thermometer"></ion-tab>\n  <ion-tab [root]="tab3Root" tabTitle="Cameras" tabIcon="ios-videocam"></ion-tab>\n  <ion-tab [root]="tab4Root" tabTitle="Devices" tabIcon="ios-git-commit"></ion-tab>\n</ion-tabs>\n'/*ion-inline-end:"/home/jovica/Ionic/SmartHomeApp/src/pages/tabs-page/tabs-page.html"*/
+        Component({template:/*ion-inline-start:"/home/jovica/projects/IonicProjects/SmartHomeApp/src/pages/tabs-page/tabs-page.html"*/'<ion-tabs [selectedIndex]="mySelectedIndex" name="conference">\n  <ion-tab [root]="tab1Root" tabTitle="Security" tabIcon="ios-lock" tabUrlPath="conference-schedule"></ion-tab>\n  <ion-tab [root]="tab2Root" tabTitle="Thermostats" tabIcon="ios-thermometer"></ion-tab>\n  <ion-tab [root]="tab3Root" tabTitle="Cameras" tabIcon="ios-videocam"></ion-tab>\n  <ion-tab [root]="tab4Root" tabTitle="Devices" tabIcon="ios-git-commit"></ion-tab>\n</ion-tabs>\n'/*ion-inline-end:"/home/jovica/projects/IonicProjects/SmartHomeApp/src/pages/tabs-page/tabs-page.html"*/
         }),
         __metadata("design:paramtypes", [NavParams])
     ], TabsPage);

@@ -49,15 +49,15 @@ var SecuritySystem = (function () {
     SecuritySystem.prototype.getSecuritySystemStatus = function () {
         return this.SecuritySystemServices;
     };
-    SecuritySystem.prototype.getSecuritySystemStatusHummanReadable = function () {
-        var securitySystemStatusHummanReadable;
+    SecuritySystem.prototype.getSecuritySystemStatusHumanReadable = function () {
+        var securitySystemStatusHumanReadable;
         if (this.getSecuritySystemStatus() == false) {
-            securitySystemStatusHummanReadable = "Disarmed";
+            securitySystemStatusHumanReadable = "Disarmed";
         }
         else {
-            securitySystemStatusHummanReadable = "Armed";
+            securitySystemStatusHumanReadable = "Armed";
         }
-        return securitySystemStatusHummanReadable;
+        return securitySystemStatusHumanReadable;
     };
     SecuritySystem.prototype.DisarmTheSecuritySystem = function (SecuritySystemServices) {
         this.SecuritySystemServices = SecuritySystemServices;
@@ -68,7 +68,7 @@ var SecuritySystem = (function () {
     SecuritySystem.prototype.getGarageDoorsStatus = function () {
         return this.GarageDoors;
     };
-    SecuritySystem.prototype.getGarageDoorsStatusHummanReadable = function () {
+    SecuritySystem.prototype.getGarageDoorsStatusHumanReadable = function () {
         var garageDoorsStatus;
         if (this.getGarageDoorsStatus() == false) {
             garageDoorsStatus = "Closed";
@@ -99,6 +99,7 @@ export var categories;
     categories["SecurityDevices"] = "Security Devices";
     categories["ThermostatsDevices"] = "Thermostat Devices";
     categories["CamerasDevices"] = "Camera Devices";
+    categories["DoorDevices"] = "Door Devices";
     categories["OtherDevices"] = "Other Devices";
 })(categories || (categories = {}));
 //# sourceMappingURL=device.js.map

@@ -1,0 +1,21 @@
+page-user{
+    @media screen and (min-width: 300px) {
+        .logo p{
+            text-transform:capitalize;
+            font-size:2em;
+        }
+        .logo ion-icon{
+            font-size:5em;
+        }
+    }
+
+    @media screen and (min-width: 800px) {
+        .logo p{
+            text-transform:capitalize;
+            font-size:2em;
+        }
+        .logo ion-icon{
+            font-size:10em;
+        }
+    }
+}
