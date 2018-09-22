@@ -9,6 +9,8 @@ import { AlertController, App, List, ModalController, NavController, ToastContro
 
 import { UserData } from '../../providers/user-data';
 import { Devices } from '../../providers/devices';//data
+import { Device, categories } from '../../models/device';
+
 
 
 @Component({
@@ -29,6 +31,10 @@ export class SchedulePage {
     shownSessions: any = [];
     groups: any = [];
     confDate: string;
+    currentItems: Device[];
+    securityItems: Device[];
+    SecurityDevices: Device[];
+    Categories : string[] = [];
 
     constructor(
         public alertCtrl: AlertController,
@@ -38,9 +44,75 @@ export class SchedulePage {
         public navCtrl: NavController,
         public toastCtrl: ToastController,
         public user: UserData,
-        public devices: Devices,
-    ) {
+        public devices: Devices) {
+            this.currentItems = this.devices.query();
+            console.log(this.currentItems);
+            let CategoryList = [
+              {"category":categories.SecurityDevices.toString()},
+              {"category":categories.ThermostatsDevices.toString()},
+              {"category":categories.CamerasDevices.toString()},
+              {"category":categories.OtherDevices.toString()}
+            ];
+
+        for (let category of CategoryList) {
+          this.Categories.push(category.category);
+          //console.log(category);
+        }
+
+        this.securityItems = this.createLists("Security Devices");
+
+        }
+
+    ionViewDidEnter(){
+      this.currentItems = this.devices.query();
+      this.securityItems = this.createLists("Security Devices");
+      let checkedDeviceStatus = this.checkDeviceStatus(this.securityItems);
+      // console.log("status:" + checkedDeviceStatus);
+      if(checkedDeviceStatus == 1){
+        this.arm();
+      }else if(checkedDeviceStatus == 0){
+        this.disarm();
+      }
+      
     }
+
+    createLists(category: String){
+      let categoryArray: Device[] = [];
+      for(let item of this.currentItems){
+          if (item.category == category){
+            categoryArray.push(item);
+          }
+      }
+      // console.log(categoryArray);
+      return categoryArray;
+  }
+
+  checkDeviceStatus(Items:any){
+    
+    let counterTrue = 0;
+    let counterFalse = 0;
+    // console.log(counter);
+    for (let item of Items){
+      if(item.status == "true"){
+        
+        counterTrue = counterTrue + 1;
+        
+      }else {
+        counterFalse = counterFalse + 1;
+  
+      }
+    }
+    // console.log("counterTrue" + counterTrue); 
+    // console.log("counterFalse:" + counterFalse);
+    if(counterTrue == Items.length){
+      return 1;
+    }else if(counterFalse == Items.length){
+      return 0;
+    }else{
+      return -1;
+    }
+  }
+
 
     disarm() {
         this.devices.query("disarm");

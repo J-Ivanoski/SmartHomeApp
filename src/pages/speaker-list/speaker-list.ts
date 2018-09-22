@@ -19,7 +19,6 @@ import { Devices } from '../../providers/devices';
   templateUrl: 'speaker-list.html'
 })
 export class SpeakerListPage {
-  // TODO: min and max temperature vars instead of hardcoded numbers (15 and 30)
   MIN_TEMP: Number;
   MAX_TEMP: Number;
   TEMPERATURE_FORMAT: any;
@@ -46,10 +45,11 @@ export class SpeakerListPage {
 
       this.thermostatItems = this.createLists("Thermostat Devices");
       //console.log(this.thermostatItems);
-      this.temperatureFormat=[{id: 0, value: "celsius"},{id: 1, value: "fahrenheit"}];
+      this.temperatureFormat= [{id: 0, value: "celsius"},{id: 1, value: "fahrenheit"}];
       this.TEMPERATURE_FORMAT = "c";
       this.MIN_TEMP = 10;
       this.MAX_TEMP = 30;
+      //this.devices.item.index_f = Number(this.convertTemperatureFormat(this.devices.item.index, "f"))
       //console.log(this.temperatureFormat);
     //  this.currentTemperature=randomized();
   }
@@ -68,7 +68,9 @@ export class SpeakerListPage {
             if((item.index=="") || (!(item.index)) || !Number(item.index)
               || (item.index < this.MIN_TEMP) || (item.index > this.MAX_TEMP)){
               item.index=Number(24);
+              item.index_f=Number(this.convertTemperatureFormat(item.index, "f"))
             }
+            item.index_f=Number(this.convertTemperatureFormat(item.index, "f"))
             categoryArray.push(item);
           }
       }
@@ -76,43 +78,50 @@ export class SpeakerListPage {
       return categoryArray;
   }
 
-  // TODO: functions for current and desired temperatures. Maybe c/f conversion
+
   increment(item: any){
     item.index = Number(item.index);
-    console.log("MIN_TEMP:" + this.MIN_TEMP +", MAX_TEMP:" + this.MAX_TEMP);
-    console.log("item.index:" + item.index);
+    item.index_f = Number(item.index_f);
+   // console.log("MIN_TEMP:" + this.MIN_TEMP +", MAX_TEMP:" + this.MAX_TEMP);
+   // console.log("item.index:" + item.index);
     if (this.TEMPERATURE_FORMAT == "c"){
       if (item.index < this.MAX_TEMP)
         item.index = Math.floor(item.index + 1);
+        item.index_f = Number(this.convertTemperatureFormat(item.index, "f"))
     }
     if(this.TEMPERATURE_FORMAT == "f"){
       let value = Number(this.convertTemperatureFormat(item.index, "f"));
       if (value < this.MAX_TEMP){
         value = Math.floor(value + 1);
+        item.index_f = value;
         item.index = this.convertTemperatureFormat(value, "c");
+
       }
     }
   }
 
   decrement(item: any){
     item.index = Number(item.index);
-    console.log("MIN_TEMP:" + this.MIN_TEMP +", MAX_TEMP:" + this.MAX_TEMP);
-    console.log("item.index:" + item.index +
-                "temperatureFormat: " + this.TEMPERATURE_FORMAT);
+    item.index_f = Number(item.index_f);
+   // console.log("MIN_TEMP:" + this.MIN_TEMP +", MAX_TEMP:" + this.MAX_TEMP);
+  //  console.log("item.index:" + item.index + "temperatureFormat: " + this.TEMPERATURE_FORMAT);
     if (this.TEMPERATURE_FORMAT == "c"){
       if (item.index > this.MIN_TEMP)
         item.index = Math.ceil(item.index - 1);
+        item.index_f = Number(this.convertTemperatureFormat(item.index, "f"))
+
     }
     if(this.TEMPERATURE_FORMAT == "f"){
-      let value = Number(this.convertTemperatureFormat(item.index, "f"));
+      let value = item.index_f;
       if (value > this.MIN_TEMP){
           value = Math.ceil(value - 1);
+        item.index_f = value;
         item.index = (this.convertTemperatureFormat(value, "c"));
       }
     }
   }
 
-//throws a weird error
+//we are not using this function at the moment
   randomized(){
     let rand = Math.floor((Math.random() * 15) + 15);
     String(rand)
@@ -124,9 +133,11 @@ export class SpeakerListPage {
   convertTemperatureFormat(value: any, flag: any){
     Number(value);
     if(flag=="f"){
+
       return (value * 9 / 5 + 32)
     }
     if(flag=="c"){
+
       return ((value-32)*5 / 9)
     }
   }
@@ -136,104 +147,40 @@ export class SpeakerListPage {
       this.MIN_TEMP = this.convertTemperatureFormat(this.MIN_TEMP,"f");
       this.MAX_TEMP = this.convertTemperatureFormat(this.MAX_TEMP,"f");
       this.TEMPERATURE_FORMAT = "f";
-      console.log("TEMPERATURE_FORMAT:" + this.TEMPERATURE_FORMAT +
-                  "MIN_TEMP:" + this.MIN_TEMP +", MAX_TEMP:" + this.MAX_TEMP);
+     // console.log("value: " + value);
+   //   console.log("TEMPERATURE_FORMAT:" + this.TEMPERATURE_FORMAT +
+   //               "MIN_TEMP:" + this.MIN_TEMP +", MAX_TEMP:" + this.MAX_TEMP);
     }
     else if((value=="celsius") && (this.TEMPERATURE_FORMAT == "f")){
       this.MIN_TEMP = this.convertTemperatureFormat(this.MIN_TEMP,"c");
       this.MAX_TEMP = this.convertTemperatureFormat(this.MAX_TEMP,"c");
       this.TEMPERATURE_FORMAT = "c";
-      console.log("TEMPERATURE_FORMAT:" + this.TEMPERATURE_FORMAT +
-                  "MIN_TEMP:" + this.MIN_TEMP +", MAX_TEMP:" + this.MAX_TEMP);
+      //console.log("value: " + value);
+
+      // console.log("TEMPERATURE_FORMAT:" + this.TEMPERATURE_FORMAT +
+      //             "MIN_TEMP:" + this.MIN_TEMP +", MAX_TEMP:" + this.MAX_TEMP);
 
     }
   }
 
+  change(item: any, flag: any){
+    if(flag == 'c'){
+      item.index_f = Number(this.convertTemperatureFormat(item.index, "f"));
+      console.log("index_c:" + item.index + "index_f: " + item.index_f);
+    }
+    else if (flag == 'f'){
+      item.index = Number(this.convertTemperatureFormat(item.index_f, "c"));
+      console.log("index_c:" + item.index + "index_f: " + item.index_f);
+    }
+  }
+
   getDesiredTemperature(value: any){
-    value = (this.TEMPERATURE_FORMAT == "c") ? value : this.convertTemperatureFormat(value, "f");
-    console.log("value:" + value);
-    return value;
+    
+    let val = (this.TEMPERATURE_FORMAT == "c") ? value.index : value.index_f;
+    //console.log("value:" + val);
+    return val;
   }
 }
 
 
 
-
-/*
-
-  actionSheet: ActionSheet;
-  speakers: any[] = [];
-
-  constructor(
-    public actionSheetCtrl: ActionSheetController,
-    public navCtrl: NavController,
-    public config: Config,
-    public inAppBrowser: InAppBrowser
-  ) {}
-
-
-
-
-/*
-  goToSpeakerTwitter(speaker: any) {
-    this.inAppBrowser.create(
-      `https://twitter.com/${speaker.twitter}`,
-      '_blank'
-    );
-  }
-
-  openSpeakerShare(speaker: any) {
-    let actionSheet = this.actionSheetCtrl.create({
-      title: 'Share ' + speaker.name,
-      buttons: [
-        {
-          text: 'Copy Link',
-          handler: () => {
-            console.log('Copy link clicked on https://twitter.com/' + speaker.twitter);
-            if ( (window as any)['cordova'] && (window as any)['cordova'].plugins.clipboard) {
-              (window as any)['cordova'].plugins.clipboard.copy(
-                'https://twitter.com/' + speaker.twitter
-              );
-            }
-          }
-        } as ActionSheetButton,
-        {
-          text: 'Share via ...'
-        } as ActionSheetButton,
-        {
-          text: 'Cancel',
-          role: 'cancel'
-        } as ActionSheetButton
-      ]
-    } as ActionSheetOptions);
-
-    actionSheet.present();
-  }
-
-  openContact(speaker: any) {
-    let mode = this.config.get('mode');
-
-    let actionSheet = this.actionSheetCtrl.create({
-      title: 'Contact ' + speaker.name,
-      buttons: [
-        {
-          text: `Email ( ${speaker.email} )`,
-          icon: mode !== 'ios' ? 'mail' : null,
-          handler: () => {
-            window.open('mailto:' + speaker.email);
-          }
-        } as ActionSheetButton,
-        {
-          text: `Call ( ${speaker.phone} )`,
-          icon: mode !== 'ios' ? 'call' : null,
-          handler: () => {
-            window.open('tel:' + speaker.phone);
-          }
-        } as ActionSheetButton
-      ]
-    } as ActionSheetOptions);
-
-    actionSheet.present();
-  }
-
-}*/

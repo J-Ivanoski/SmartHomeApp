@@ -44,6 +44,7 @@ var SpeakerListPage = (function () {
         this.TEMPERATURE_FORMAT = "c";
         this.MIN_TEMP = 10;
         this.MAX_TEMP = 30;
+        //this.devices.item.index_f = Number(this.convertTemperatureFormat(this.devices.item.index, "f"))
         //console.log(this.temperatureFormat);
         //  this.currentTemperature=randomized();
     }
@@ -61,48 +62,54 @@ var SpeakerListPage = (function () {
                 if ((item.index == "") || (!(item.index)) || !Number(item.index)
                     || (item.index < this.MIN_TEMP) || (item.index > this.MAX_TEMP)) {
                     item.index = Number(24);
+                    item.index_f = Number(this.convertTemperatureFormat(item.index, "f"));
                 }
+                item.index_f = Number(this.convertTemperatureFormat(item.index, "f"));
                 categoryArray.push(item);
             }
         }
         // console.log(categoryArray);
         return categoryArray;
     };
-    // TODO: functions for current and desired temperatures. Maybe c/f conversion
     SpeakerListPage.prototype.increment = function (item) {
         item.index = Number(item.index);
-        console.log("MIN_TEMP:" + this.MIN_TEMP + ", MAX_TEMP:" + this.MAX_TEMP);
-        console.log("item.index:" + item.index);
+        item.index_f = Number(item.index_f);
+        // console.log("MIN_TEMP:" + this.MIN_TEMP +", MAX_TEMP:" + this.MAX_TEMP);
+        // console.log("item.index:" + item.index);
         if (this.TEMPERATURE_FORMAT == "c") {
             if (item.index < this.MAX_TEMP)
                 item.index = Math.floor(item.index + 1);
+            item.index_f = Number(this.convertTemperatureFormat(item.index, "f"));
         }
         if (this.TEMPERATURE_FORMAT == "f") {
             var value = Number(this.convertTemperatureFormat(item.index, "f"));
             if (value < this.MAX_TEMP) {
                 value = Math.floor(value + 1);
+                item.index_f = value;
                 item.index = this.convertTemperatureFormat(value, "c");
             }
         }
     };
     SpeakerListPage.prototype.decrement = function (item) {
         item.index = Number(item.index);
-        console.log("MIN_TEMP:" + this.MIN_TEMP + ", MAX_TEMP:" + this.MAX_TEMP);
-        console.log("item.index:" + item.index +
-            "temperatureFormat: " + this.TEMPERATURE_FORMAT);
+        item.index_f = Number(item.index_f);
+        // console.log("MIN_TEMP:" + this.MIN_TEMP +", MAX_TEMP:" + this.MAX_TEMP);
+        //  console.log("item.index:" + item.index + "temperatureFormat: " + this.TEMPERATURE_FORMAT);
         if (this.TEMPERATURE_FORMAT == "c") {
             if (item.index > this.MIN_TEMP)
                 item.index = Math.ceil(item.index - 1);
+            item.index_f = Number(this.convertTemperatureFormat(item.index, "f"));
         }
         if (this.TEMPERATURE_FORMAT == "f") {
-            var value = Number(this.convertTemperatureFormat(item.index, "f"));
+            var value = item.index_f;
             if (value > this.MIN_TEMP) {
                 value = Math.ceil(value - 1);
+                item.index_f = value;
                 item.index = (this.convertTemperatureFormat(value, "c"));
             }
         }
     };
-    //throws a weird error
+    //we are not using this function at the moment
     SpeakerListPage.prototype.randomized = function () {
         var rand = Math.floor((Math.random() * 15) + 15);
         String(rand);
@@ -124,25 +131,37 @@ var SpeakerListPage = (function () {
             this.MIN_TEMP = this.convertTemperatureFormat(this.MIN_TEMP, "f");
             this.MAX_TEMP = this.convertTemperatureFormat(this.MAX_TEMP, "f");
             this.TEMPERATURE_FORMAT = "f";
-            console.log("TEMPERATURE_FORMAT:" + this.TEMPERATURE_FORMAT +
-                "MIN_TEMP:" + this.MIN_TEMP + ", MAX_TEMP:" + this.MAX_TEMP);
+            // console.log("value: " + value);
+            //   console.log("TEMPERATURE_FORMAT:" + this.TEMPERATURE_FORMAT +
+            //               "MIN_TEMP:" + this.MIN_TEMP +", MAX_TEMP:" + this.MAX_TEMP);
         }
         else if ((value == "celsius") && (this.TEMPERATURE_FORMAT == "f")) {
             this.MIN_TEMP = this.convertTemperatureFormat(this.MIN_TEMP, "c");
             this.MAX_TEMP = this.convertTemperatureFormat(this.MAX_TEMP, "c");
             this.TEMPERATURE_FORMAT = "c";
-            console.log("TEMPERATURE_FORMAT:" + this.TEMPERATURE_FORMAT +
-                "MIN_TEMP:" + this.MIN_TEMP + ", MAX_TEMP:" + this.MAX_TEMP);
+            //console.log("value: " + value);
+            // console.log("TEMPERATURE_FORMAT:" + this.TEMPERATURE_FORMAT +
+            //             "MIN_TEMP:" + this.MIN_TEMP +", MAX_TEMP:" + this.MAX_TEMP);
+        }
+    };
+    SpeakerListPage.prototype.change = function (item, flag) {
+        if (flag == 'c') {
+            item.index_f = Number(this.convertTemperatureFormat(item.index, "f"));
+            console.log("index_c:" + item.index + "index_f: " + item.index_f);
+        }
+        else if (flag == 'f') {
+            item.index = Number(this.convertTemperatureFormat(item.index_f, "c"));
+            console.log("index_c:" + item.index + "index_f: " + item.index_f);
         }
     };
     SpeakerListPage.prototype.getDesiredTemperature = function (value) {
-        value = (this.TEMPERATURE_FORMAT == "c") ? value : this.convertTemperatureFormat(value, "f");
-        console.log("value:" + value);
-        return value;
+        var val = (this.TEMPERATURE_FORMAT == "c") ? value.index : value.index_f;
+        //console.log("value:" + val);
+        return val;
     };
     SpeakerListPage = __decorate([
         Component({
-            selector: 'page-speaker-list',template:/*ion-inline-start:"/home/jovica/projects/IonicProjects/SmartHomeApp/src/pages/speaker-list/speaker-list.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Thermostats</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content class="outer-content speaker-list">\n  <ion-list radio-group>\n    <h3> Temperature Format </h3>\n    <ion-item *ngFor="let format of temperatureFormat; let i = index">\n      <ion-label>{{ format.value }}</ion-label>\n      <ion-radio name="radiogroup" [checked]="i===0" [value]="format.id"\n      (click)="changeTemperatureFormat(format.value)"> </ion-radio>\n    </ion-item>\n  </ion-list>\n  <ion-grid>\n        <ion-row *ngFor="let item of thermostatItems; let i=index">\n          <ion-col col-sm-10 col-md-11 col-lg-11 col-xl-11 >\n            <ion-item>\n            <!--\n                Does not behave propperly when fahrehneit is selected (no 2-way bond)\n              -->\n                <ion-range *ngIf="TEMPERATURE_FORMAT==\'c\'" [(ngModel)]="item.index" min="{{ MIN_TEMP }}" max="{{ MAX_TEMP }}" step="1" pin="true"  color="danger">\n                  <ion-icon range-left  color="danger" name="thermometer"></ion-icon>\n                  <ion-icon range-right color="danger" name="thermometer"></ion-icon>\n                </ion-range>\n\n\n                <ion-range *ngIf="TEMPERATURE_FORMAT==\'f\'" [ngModel]="getDesiredTemperature(item.index)"\n                min="{{ MIN_TEMP }}" max="{{ MAX_TEMP }}" step="1" pin="true"  color="danger">\n                  <ion-icon range-left  color="danger" name="thermometer"></ion-icon>\n                  <ion-icon range-right color="danger" name="thermometer"></ion-icon>\n                </ion-range>\n\n\n                <ion-label> <strong>{{ item.DeviceName }}</strong> </ion-label>\n                <ion-label> Desired temperature: {{ getDesiredTemperature(item.index) }} &deg;{{ TEMPERATURE_FORMAT.toUpperCase() }}</ion-label>\n            </ion-item>\n          </ion-col>\n          <ion-col col-sm-2 col-md-1 col-lg-1 col-xl-1>\n            <button (click)="increment(item)"><ion-icon name="add-circle" ></ion-icon></button> <br>\n            <button (click)="decrement(item)"><ion-icon name="remove-circle" ></ion-icon></button>\n            <!--<ion-label> Current temperature: {{ randomized() }} </ion-label>-->\n          </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n'/*ion-inline-end:"/home/jovica/projects/IonicProjects/SmartHomeApp/src/pages/speaker-list/speaker-list.html"*/
+            selector: 'page-speaker-list',template:/*ion-inline-start:"/home/jovica/projects/IonicProjects/SmartHomeApp/src/pages/speaker-list/speaker-list.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Thermostats</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content class="outer-content speaker-list">\n  <ion-list radio-group>\n    <h3> Temperature Format </h3>\n    <ion-item *ngFor="let format of temperatureFormat; let i = index">\n      <ion-label>{{ format.value }}</ion-label>\n      <ion-radio name="radiogroup" [checked]="i===0" [value]="format.id"\n      (click)="changeTemperatureFormat(format.value)"> </ion-radio>\n    </ion-item>\n  </ion-list>\n  <ion-grid>\n        <ion-row *ngFor="let item of thermostatItems; let i=index">\n          <ion-col col-sm-10 col-md-11 col-lg-11 col-xl-11 >\n            <ion-item>\n            <!--\n                Does not behave propperly when fahrehneit is selected (no 2-way bond)\n              -->\n                <ion-range *ngIf="TEMPERATURE_FORMAT==\'c\'" [(ngModel)]="item.index"  (ionChange)="change(item, \'c\')"\n                  min="{{ MIN_TEMP }}" max="{{ MAX_TEMP }}" step="1" pin="true"  color="danger">\n                  <ion-icon range-left  color="danger" name="thermometer"></ion-icon>\n                  <ion-icon range-right color="danger" name="thermometer"></ion-icon>\n                </ion-range>\n\n\n                <ion-range *ngIf="TEMPERATURE_FORMAT==\'f\'" [(ngModel)]="item.index_f" (ionChange)="change(item, \'f\')"\n                  min="{{ MIN_TEMP }}" max="{{ MAX_TEMP }}" step="1" pin="true"  color="danger">\n                  <ion-icon range-left  color="danger" name="thermometer"></ion-icon>\n                  <ion-icon range-right color="danger" name="thermometer"></ion-icon>\n                </ion-range>\n\n\n                <ion-label> <strong>{{ item.DeviceName }}</strong> </ion-label>\n                <ion-label> Desired temperature: {{ getDesiredTemperature(item) }} &deg;{{ TEMPERATURE_FORMAT.toUpperCase() }}</ion-label>\n            </ion-item>\n          </ion-col>\n          <ion-col col-sm-2 col-md-1 col-lg-1 col-xl-1>\n            <button (click)="increment(item)"><ion-icon name="add-circle" ></ion-icon></button> <br>\n            <button (click)="decrement(item)"><ion-icon name="remove-circle" ></ion-icon></button>\n            <ion-toggle [(ngModel)]]="item.status"></ion-toggle>\n\n            <!--<ion-label> Current temperature: {{ randomized() }} </ion-label>-->\n          </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n'/*ion-inline-end:"/home/jovica/projects/IonicProjects/SmartHomeApp/src/pages/speaker-list/speaker-list.html"*/
         }),
         __metadata("design:paramtypes", [Platform, Devices,
             ModalController, NavController])
@@ -150,82 +169,4 @@ var SpeakerListPage = (function () {
     return SpeakerListPage;
 }());
 export { SpeakerListPage };
-/*
-
-  actionSheet: ActionSheet;
-  speakers: any[] = [];
-
-  constructor(
-    public actionSheetCtrl: ActionSheetController,
-    public navCtrl: NavController,
-    public config: Config,
-    public inAppBrowser: InAppBrowser
-  ) {}
-
-
-
-
-/*
-  goToSpeakerTwitter(speaker: any) {
-    this.inAppBrowser.create(
-      `https://twitter.com/${speaker.twitter}`,
-      '_blank'
-    );
-  }
-
-  openSpeakerShare(speaker: any) {
-    let actionSheet = this.actionSheetCtrl.create({
-      title: 'Share ' + speaker.name,
-      buttons: [
-        {
-          text: 'Copy Link',
-          handler: () => {
-            console.log('Copy link clicked on https://twitter.com/' + speaker.twitter);
-            if ( (window as any)['cordova'] && (window as any)['cordova'].plugins.clipboard) {
-              (window as any)['cordova'].plugins.clipboard.copy(
-                'https://twitter.com/' + speaker.twitter
-              );
-            }
-          }
-        } as ActionSheetButton,
-        {
-          text: 'Share via ...'
-        } as ActionSheetButton,
-        {
-          text: 'Cancel',
-          role: 'cancel'
-        } as ActionSheetButton
-      ]
-    } as ActionSheetOptions);
-
-    actionSheet.present();
-  }
-
-  openContact(speaker: any) {
-    let mode = this.config.get('mode');
-
-    let actionSheet = this.actionSheetCtrl.create({
-      title: 'Contact ' + speaker.name,
-      buttons: [
-        {
-          text: `Email ( ${speaker.email} )`,
-          icon: mode !== 'ios' ? 'mail' : null,
-          handler: () => {
-            window.open('mailto:' + speaker.email);
-          }
-        } as ActionSheetButton,
-        {
-          text: `Call ( ${speaker.phone} )`,
-          icon: mode !== 'ios' ? 'call' : null,
-          handler: () => {
-            window.open('tel:' + speaker.phone);
-          }
-        } as ActionSheetButton
-      ]
-    } as ActionSheetOptions);
-
-    actionSheet.present();
-  }
-
-}*/
 //# sourceMappingURL=speaker-list.js.map

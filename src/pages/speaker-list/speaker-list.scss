@@ -36,4 +36,12 @@ page-speaker-list {
   button ion-icon{
     font-size: 4em;
   }
+
+  div > ion-toggle{
+    display:flex;
+    width: 80%;
+    height: 100%;
+    margin-top:30%;
+  }
+
 }

@@ -77,7 +77,8 @@ var Devices = (function () {
                 "about": "The main Air Conditioner.",
                 "status": "true",
                 "category": categories.ThermostatsDevices.toString(),
-                "index": 20
+                "index": 20,
+                "index_f": (20 * 9 / 5 + 32)
             },
             {
                 "DeviceName": "Garage Conditioner",
@@ -85,7 +86,8 @@ var Devices = (function () {
                 "about": "The Garage Conditioner.",
                 "status": "false",
                 "category": categories.ThermostatsDevices.toString(),
-                "index": 25
+                "index": 25,
+                "index_f": (25 * 9 / 5 + 32)
             },
             {
                 "DeviceName": "Living Room Lights",

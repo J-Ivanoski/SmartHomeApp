@@ -16,6 +16,7 @@ import { AlertController, App, List, ModalController, NavController, ToastContro
 // import moment from 'moment';
 import { UserData } from '../../providers/user-data';
 import { Devices } from '../../providers/devices'; //data
+import { categories } from '../../models/device';
 var SchedulePage = (function () {
     function SchedulePage(alertCtrl, app, loadingCtrl, modalCtrl, navCtrl, toastCtrl, user, devices) {
         this.alertCtrl = alertCtrl;
@@ -32,7 +33,70 @@ var SchedulePage = (function () {
         this.excludeTracks = [];
         this.shownSessions = [];
         this.groups = [];
+        this.Categories = [];
+        this.currentItems = this.devices.query();
+        console.log(this.currentItems);
+        var CategoryList = [
+            { "category": categories.SecurityDevices.toString() },
+            { "category": categories.ThermostatsDevices.toString() },
+            { "category": categories.CamerasDevices.toString() },
+            { "category": categories.OtherDevices.toString() }
+        ];
+        for (var _i = 0, CategoryList_1 = CategoryList; _i < CategoryList_1.length; _i++) {
+            var category = CategoryList_1[_i];
+            this.Categories.push(category.category);
+            //console.log(category);
+        }
+        this.securityItems = this.createLists("Security Devices");
     }
+    SchedulePage.prototype.ionViewDidEnter = function () {
+        this.currentItems = this.devices.query();
+        this.securityItems = this.createLists("Security Devices");
+        var checkedDeviceStatus = this.checkDeviceStatus(this.securityItems);
+        // console.log("status:" + checkedDeviceStatus);
+        if (checkedDeviceStatus == 1) {
+            this.arm();
+        }
+        else if (checkedDeviceStatus == 0) {
+            this.disarm();
+        }
+    };
+    SchedulePage.prototype.createLists = function (category) {
+        var categoryArray = [];
+        for (var _i = 0, _a = this.currentItems; _i < _a.length; _i++) {
+            var item = _a[_i];
+            if (item.category == category) {
+                categoryArray.push(item);
+            }
+        }
+        // console.log(categoryArray);
+        return categoryArray;
+    };
+    SchedulePage.prototype.checkDeviceStatus = function (Items) {
+        var counterTrue = 0;
+        var counterFalse = 0;
+        // console.log(counter);
+        for (var _i = 0, Items_1 = Items; _i < Items_1.length; _i++) {
+            var item = Items_1[_i];
+            if (item.status == "true") {
+                counterTrue = counterTrue + 1;
+            }
+            else {
+                counterFalse = counterFalse + 1;
+            }
+        }
+        // console.log("counterTrue" + counterTrue); 
+        // console.log("counterFalse:" + counterFalse);
+        if (counterTrue == Items.length) {
+            return 1;
+        }
+        else if (counterFalse == Items.length) {
+            return 0;
+        }
+        else {
+            return -1;
+        }
+    };
     SchedulePage.prototype.disarm = function () {
         this.devices.query("disarm");
         //  console.log(this.devices.query());

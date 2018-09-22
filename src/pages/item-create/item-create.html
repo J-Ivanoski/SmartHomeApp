@@ -1,11 +1,11 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{ 'Add a new device'}}</ion-title>
+    <ion-title>{{ 'Add a new device' }}</ion-title>
     <ion-buttons start>
       <button ion-button (click)="cancel()">
         <span color="primary" showWhen="ios">
-          {{ 'CANCEL_BUTTON'}}
+          {{ 'CANCEL_BUTTON' }}
         </span>
         <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
       </button>
@@ -13,7 +13,7 @@
     <ion-buttons end>
       <button ion-button (click)="done()" [disabled]="!isReadyToSave" strong>
         <span color="primary" showWhen="ios">
-          {{ 'DONE_BUTTON'}}
+          {{ 'DONE_BUTTON' }}
         </span>
         <ion-icon name="md-checkmark" showWhen="core,android,windows"></ion-icon>
       </button>
