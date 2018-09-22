@@ -53,7 +53,7 @@ export class Devices {
         "DeviceName": "Garage door",
         //"profilePic": "assets/img/speakers/duck.jpg",
         "about": "garage door sensor",
-        "status": "false",
+        "status": false,
         "category": categories.DoorDevices.toString()
       },
       {
@@ -79,7 +79,8 @@ export class Devices {
         "about": "The main Air Conditioner.",
         "status": "true",
         "category": categories.ThermostatsDevices.toString(),
-        "index" : 20
+        "index" : 20,
+        "index_f" :(20 * 9 / 5 + 32)
 
       },
       {
@@ -88,7 +89,8 @@ export class Devices {
         "about": "The Garage Conditioner.",
         "status": "false",
         "category": categories.ThermostatsDevices.toString(),
-        "index" : 25
+        "index" : 25,
+        "index_f" :(25 * 9 / 5 + 32)
 
       },
       {
@@ -140,7 +142,7 @@ export class Devices {
         //change status for that category
          this.items.forEach(item => {
            if(item.category.match("Door Devices")){
-             item.status = "true";
+             item.status = true;
            }
          });
         this.securitySystem.OpenCloseGarageDoors(true);
@@ -150,7 +152,7 @@ export class Devices {
          //change status for that category
          this.items.forEach(item => {
            if(item.category.match("Door Devices")){
-            item.status = "false";
+            item.status = false;
           }
          });
         this.securitySystem.OpenCloseGarageDoors(false);

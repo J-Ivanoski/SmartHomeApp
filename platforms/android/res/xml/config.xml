@@ -21,9 +21,9 @@
     <feature name="Keyboard">
         <param name="android-package" onload="true" value="io.ionic.keyboard.IonicKeyboard" />
     </feature>
-    <name>Ionic Conference</name>
-    <description>An Ionic Framework application for the Ionic Conference.</description>
-    <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
+    <name>Smart Home App</name>
+    <description>A Smart Home application for the managing household applicances.</description>
+    <author email="smarthomeapp@example" href="https://github.com/jovica001/SmartHomeApp">Smart Home Team</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
@@ -56,7 +56,7 @@
     <preference name="xwalkCommandLine" value="--disable-pull-to-refresh-effect" />
     <preference name="xwalkMode" value="embedded" />
     <preference name="xwalkMultipleApk" value="true" />
-    <preference name="orientation" value="default" />
+    <preference name="orientation" value="portrait" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="StatusBarStyle" value="default" />
     <preference name="android-minSdkVersion" value="16" />

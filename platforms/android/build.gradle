@@ -156,9 +156,6 @@ task cdvPrintProps << {
 }
 
 android {
-
-    flavorDimensions "default"
-
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
@@ -171,6 +168,9 @@ android {
             jniLibs.srcDirs = ['libs']
         }
     }
+
+    flavorDimensions "default"
+
 
     defaultConfig {
         versionCode cdvVersionCode ?: new BigInteger("" + privateHelpers.extractIntFromManifest("versionCode"))

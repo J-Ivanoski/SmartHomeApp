@@ -59,6 +59,14 @@ page-schedule {
     text-align:center;
   }
 
+  .status span {
+    font-size:1.5em;
+  }
+
+  div[class=text-center] > p {
+    font-size:15px;
+  }
+
   ion-col[class=text-center] > p {
     font-size:18px;
   }

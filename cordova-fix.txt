@@ -1,0 +1,24 @@
+The thing that worked for me :
+
+add this plugin before adding the platform
+
+cordova plugin add cordova-android-support-gradle-release
+
+cordova platform add android
+
+change the flavors in platforms/android/build.gradle
+
+android {
+	...
+	flavorDimensions "default"
+}
+
+and last step:
+
+cordova build android
+
+Run and Pray!
+
+Thanks to lohith95
+
+from https://forum.ionicframework.com/t/android-build-broken-after-gradle-dependencies-update-execution-failed-for-task-processdebugresources-com-android-ide-common-process-processexception-failed-to-execute-aapt/109982/170
