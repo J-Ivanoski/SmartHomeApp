@@ -52,17 +52,20 @@
                   </ion-row>
                   <ion-row>
                     <ion-col col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6>
-                      <div class="text-center">
-                        <p ion-text>All Doors</p>
-                        <button *ngIf="this.devices.securitySystem.getSecuritySystemStatus()" ion-button round><ion-icon class="clui" name="lock"></ion-icon> Locked</button>
-                        <button *ngIf="!this.devices.securitySystem.getSecuritySystemStatus()" ion-button round color="danger"><ion-icon class="clui" name="unlock"></ion-icon> Unlocked</button>
+                      <div class="text-center status">
+                        
+                        
+                        <p ion-text>Security Devices</p>
+                        <span *ngIf="this.devices.securitySystem.getSecuritySystemStatus()"> <ion-icon class="clui" color="primary" name="lock"></ion-icon> Locked</span>
+                        <span *ngIf="!this.devices.securitySystem.getSecuritySystemStatus()"> <ion-icon class="clui" color="danger" name="unlock"></ion-icon> Unlocked</span>
+                      
                       </div>
                     </ion-col>
                     <ion-col col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6>
                       <div class="text-center">
-                        <p ion-text>Garage Doors</p>
-                        <button *ngIf="this.devices.securitySystem.getGarageDoorsStatus()" ion-button round (click)="closeGarageDoors()">{{this.devices.securitySystem.getGarageDoorsStatusHumanReadable()}} <ion-icon class="clui" name="home"></ion-icon></button>
-                        <button *ngIf="!this.devices.securitySystem.getGarageDoorsStatus()" ion-button round (click)="openGarageDoors()" color="danger" >{{this.devices.securitySystem.getGarageDoorsStatusHumanReadable()}} <ion-icon class="clui" name="home"></ion-icon></button>
+                        <p ion-text>Garage Door</p>
+                        <button *ngIf="this.devices.securitySystem.getGarageDoorsStatus()" ion-button round (click)="closeGarageDoors()"> {{this.devices.securitySystem.getGarageDoorsStatusHumanReadable()}} <ion-icon class="clui" name="home"></ion-icon></button>
+                        <button *ngIf="!this.devices.securitySystem.getGarageDoorsStatus()" ion-button round (click)="openGarageDoors()" color="danger" > {{this.devices.securitySystem.getGarageDoorsStatusHumanReadable()}} <ion-icon class="clui" name="home"></ion-icon></button>
                       </div>
                     </ion-col>
                   </ion-row>

@@ -33,6 +33,7 @@ export class SchedulePage {
     confDate: string;
     currentItems: Device[];
     securityItems: Device[];
+    garageDoorsItems: Device[];
     SecurityDevices: Device[];
     Categories : string[] = [];
 
@@ -67,6 +68,10 @@ export class SchedulePage {
       this.currentItems = this.devices.query();
       this.securityItems = this.createLists("Security Devices");
       let checkedDeviceStatus = this.checkDeviceStatus(this.securityItems);
+      this.garageDoorsItems = this.getDoor("Door Devices");
+    
+      this.devices.securitySystem.setGarageDoorsStatus(this.garageDoorsItems.status);
+      
       // console.log("status:" + checkedDeviceStatus);
       if(checkedDeviceStatus == 1){
         this.arm();
@@ -85,6 +90,18 @@ export class SchedulePage {
       }
       // console.log(categoryArray);
       return categoryArray;
+  }
+
+//if there is more doors put in array and filter on the view with ngFor
+  getDoor(category: String){
+      let door: Device;
+      for(let item of this.currentItems){
+          if (item.category == category){
+            door = item;
+          }
+      }
+      // console.log(categoryArray);
+      return door;
   }
 
   checkDeviceStatus(Items:any){

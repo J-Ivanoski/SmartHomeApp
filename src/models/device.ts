@@ -73,6 +73,10 @@ export class SecuritySystem{
     return this.GarageDoors;
   }
 
+  setGarageDoorsStatus(doorStatus:any){
+    this.GarageDoors = doorStatus;
+  }
+
   getGarageDoorsStatusHumanReadable():string{
     let garageDoorsStatus:string;
     if(this.getGarageDoorsStatus()==false){
