@@ -33,6 +33,7 @@ export class SchedulePage {
     confDate: string;
     currentItems: Device[];
     securityItems: Device[];
+    garageDoorsItems: Device;
     SecurityDevices: Device[];
     Categories : string[] = [];
 
@@ -67,7 +68,9 @@ export class SchedulePage {
       this.currentItems = this.devices.query();
       this.securityItems = this.createLists("Security Devices");
       let checkedDeviceStatus = this.checkDeviceStatus(this.securityItems);
-      // console.log("status:" + checkedDeviceStatus);
+      this.garageDoorsItems = this.getDoor("Door Devices");
+      this.devices.securitySystem.setGarageDoorsStatus(this.garageDoorsItems.status);
+  
       if(checkedDeviceStatus == 1){
         this.arm();
       }else if(checkedDeviceStatus == 0){
@@ -87,11 +90,22 @@ export class SchedulePage {
       return categoryArray;
   }
 
+//if there is more doors put in array and filter on the view with ngFor
+  getDoor(category: String){
+      let door: Device;
+      for(let item of this.currentItems){
+          if (item.category == category){
+            door = item;
+          }
+      }
+      // console.log(categoryArray);
+      return door;
+  }
+
   checkDeviceStatus(Items:any){
     
     let counterTrue = 0;
     let counterFalse = 0;
-    // console.log(counter);
     for (let item of Items){
       if(item.status == "true"){
         
@@ -102,8 +116,6 @@ export class SchedulePage {
   
       }
     }
-    // console.log("counterTrue" + counterTrue); 
-    // console.log("counterFalse:" + counterFalse);
     if(counterTrue == Items.length){
       return 1;
     }else if(counterFalse == Items.length){
@@ -116,14 +128,10 @@ export class SchedulePage {
 
     disarm() {
         this.devices.query("disarm");
-        //  console.log(this.devices.query());
-        //  console.log(this.devices.securitySystem.getSecuritySystemStatus();
     }
 
     arm() {
         this.devices.query("arm");
-        //  console.log(this.devices.query());
-        //  console.log(this.devices.securitySystem.getSecuritySystemStatus());
     }
 
     openGarageDoors() {

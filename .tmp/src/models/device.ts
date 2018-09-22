@@ -39,12 +39,12 @@ export class Core_Device{
 export class SecuritySystem{
 
   SecuritySystemServices: boolean;
-  GarageDoors: boolean;
+  GarageDoors: any;
   
   //default constructor
   constructor(){
     this.SecuritySystemServices = true;
-    this.GarageDoors = false;
+    this.GarageDoors = 'false';
   }
 
   getSecuritySystemStatus(): boolean{
@@ -71,6 +71,11 @@ export class SecuritySystem{
 
   getGarageDoorsStatus():boolean{
     return this.GarageDoors;
+  }
+
+  setGarageDoorsStatus(doorStatus:any){
+    
+    this.GarageDoors = doorStatus;
   }
 
   getGarageDoorsStatusHumanReadable():string{

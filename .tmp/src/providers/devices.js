@@ -53,7 +53,7 @@ var Devices = (function () {
                 "DeviceName": "Garage door",
                 //"profilePic": "assets/img/speakers/duck.jpg",
                 "about": "garage door sensor",
-                "status": "false",
+                "status": false,
                 "category": categories.DoorDevices.toString()
             },
             {
@@ -137,7 +137,7 @@ var Devices = (function () {
             //change status for that category
             this.items.forEach(function (item) {
                 if (item.category.match("Door Devices")) {
-                    item.status = "true";
+                    item.status = true;
                 }
             });
             this.securitySystem.OpenCloseGarageDoors(true);
@@ -147,7 +147,7 @@ var Devices = (function () {
             //change status for that category
             this.items.forEach(function (item) {
                 if (item.category.match("Door Devices")) {
-                    item.status = "false";
+                    item.status = false;
                 }
             });
             this.securitySystem.OpenCloseGarageDoors(false);

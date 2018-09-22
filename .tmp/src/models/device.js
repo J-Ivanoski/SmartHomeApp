@@ -44,7 +44,7 @@ var SecuritySystem = (function () {
     //default constructor
     function SecuritySystem() {
         this.SecuritySystemServices = true;
-        this.GarageDoors = false;
+        this.GarageDoors = 'false';
     }
     SecuritySystem.prototype.getSecuritySystemStatus = function () {
         return this.SecuritySystemServices;
@@ -67,6 +67,9 @@ var SecuritySystem = (function () {
     };
     SecuritySystem.prototype.getGarageDoorsStatus = function () {
         return this.GarageDoors;
+    };
+    SecuritySystem.prototype.setGarageDoorsStatus = function (doorStatus) {
+        this.GarageDoors = doorStatus;
     };
     SecuritySystem.prototype.getGarageDoorsStatusHumanReadable = function () {
         var garageDoorsStatus;

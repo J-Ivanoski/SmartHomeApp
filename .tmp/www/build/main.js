@@ -255,7 +255,8 @@ var SchedulePage = (function () {
         this.currentItems = this.devices.query();
         this.securityItems = this.createLists("Security Devices");
         var checkedDeviceStatus = this.checkDeviceStatus(this.securityItems);
-        // console.log("status:" + checkedDeviceStatus);
+        this.garageDoorsItems = this.getDoor("Door Devices");
+        this.devices.securitySystem.setGarageDoorsStatus(this.garageDoorsItems.status);
         if (checkedDeviceStatus == 1) {
             this.arm();
         }
@@ -274,10 +275,21 @@ var SchedulePage = (function () {
         // console.log(categoryArray);
         return categoryArray;
     };
+    //if there is more doors put in array and filter on the view with ngFor
+    SchedulePage.prototype.getDoor = function (category) {
+        var door;
+        for (var _i = 0, _a = this.currentItems; _i < _a.length; _i++) {
+            var item = _a[_i];
+            if (item.category == category) {
+                door = item;
+            }
+        }
+        // console.log(categoryArray);
+        return door;
+    };
     SchedulePage.prototype.checkDeviceStatus = function (Items) {
         var counterTrue = 0;
         var counterFalse = 0;
-        // console.log(counter);
         for (var _i = 0, Items_1 = Items; _i < Items_1.length; _i++) {
             var item = Items_1[_i];
             if (item.status == "true") {
@@ -287,8 +299,6 @@ var SchedulePage = (function () {
                 counterFalse = counterFalse + 1;
             }
         }
-        // console.log("counterTrue" + counterTrue); 
-        // console.log("counterFalse:" + counterFalse);
         if (counterTrue == Items.length) {
             return 1;
         }
@@ -301,13 +311,9 @@ var SchedulePage = (function () {
     };
     SchedulePage.prototype.disarm = function () {
         this.devices.query("disarm");
-        //  console.log(this.devices.query());
-        //  console.log(this.devices.securitySystem.getSecuritySystemStatus();
     };
     SchedulePage.prototype.arm = function () {
         this.devices.query("arm");
-        //  console.log(this.devices.query());
-        //  console.log(this.devices.securitySystem.getSecuritySystemStatus());
     };
     SchedulePage.prototype.openGarageDoors = function () {
         this.devices.garageDoors("open");
@@ -321,7 +327,7 @@ var SchedulePage = (function () {
     ], SchedulePage.prototype, "scheduleList", void 0);
     SchedulePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-schedule',template:/*ion-inline-start:"/home/jovica/projects/IonicProjects/SmartHomeApp/src/pages/schedule/schedule.html"*/'<ion-header>\n  <ion-navbar no-border-bottom>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Security</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content >\n  <ion-grid>\n    <ion-row>\n      <ion-col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12>\n          <ion-list>\n              <ion-item-sliding #item>\n                  <ion-item-options side="left">\n                      <button class="fit-left" ion-button color="danger" (click)="disarm()">Disarm <ion-icon name="unlock"></ion-icon></button>\n                    </ion-item-options>\n                  <ion-item>\n\n                    <ion-grid>\n                      <ion-row>\n                        <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>\n                          <ion-icon class="float-left" name="arrow-back"></ion-icon>\n                        </ion-col>\n\n                        <ion-col col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6>\n                            <div class="check text-center">\n                                <img *ngIf="this.devices.securitySystem.getSecuritySystemStatus();" class="cls" src="assets/img/check.png" alt="arm icon" />\n                                <img *ngIf="!this.devices.securitySystem.getSecuritySystemStatus();" class="cls" src="assets/img/uncheck.png" alt="disarm icon" />\n                            </div>\n                        </ion-col>\n\n                        <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>\n                            <ion-icon class="float-right" name="arrow-forward"></ion-icon>\n                        </ion-col>\n\n                        </ion-row>\n                      </ion-grid>\n\n                  </ion-item>\n                  <ion-item-options side="right">\n                    <button class="fit-right" ion-button color="success" (click)="arm()">Arm <ion-icon name="key"></ion-icon></button>\n                  </ion-item-options>\n                </ion-item-sliding>\n\n              <ion-grid>\n                  <ion-row class="no-margin-top" col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12>\n                    <ion-col class="text-center">\n                      <h3 ion-text><strong>{{this.devices.securitySystem.getSecuritySystemStatusHumanReadable()}}</strong></h3>\n                    </ion-col>\n                  </ion-row>\n                  <ion-row>\n                    <ion-col col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6>\n                      <div class="text-center" style="background-color:gray;">\n                        \n                        \n                        <p ion-text>Security Devices</p>\n                        <span *ngIf="this.devices.securitySystem.getSecuritySystemStatus()"> <ion-icon class="clui" name="lock"></ion-icon> Locked</span>\n                        <span *ngIf="!this.devices.securitySystem.getSecuritySystemStatus()"> <ion-icon class="clui" color="danger" name="unlock"></ion-icon> Unlocked</span>\n                      \n                      </div>\n                    </ion-col>\n                    <ion-col col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6>\n                      <div class="text-center">\n                        <p ion-text>Garage Doors</p>\n                        <button *ngIf="this.devices.securitySystem.getGarageDoorsStatus()" ion-button round (click)="closeGarageDoors()"> {{this.devices.securitySystem.getGarageDoorsStatusHumanReadable()}} <ion-icon class="clui" name="home"></ion-icon></button>\n                        <button *ngIf="!this.devices.securitySystem.getGarageDoorsStatus()" ion-button round (click)="openGarageDoors()" color="danger" > {{this.devices.securitySystem.getGarageDoorsStatusHumanReadable()}} <ion-icon class="clui" name="home"></ion-icon></button>\n                      </div>\n                    </ion-col>\n                  </ion-row>\n                </ion-grid>\n\n          </ion-list>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n'/*ion-inline-end:"/home/jovica/projects/IonicProjects/SmartHomeApp/src/pages/schedule/schedule.html"*/
+            selector: 'page-schedule',template:/*ion-inline-start:"/home/jovica/projects/IonicProjects/SmartHomeApp/src/pages/schedule/schedule.html"*/'<ion-header>\n  <ion-navbar no-border-bottom>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Security</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content >\n  <ion-grid>\n    <ion-row>\n      <ion-col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12>\n          <ion-list>\n              <ion-item-sliding #item>\n                  <ion-item-options side="left">\n                      <button class="fit-left" ion-button color="danger" (click)="disarm()">Disarm <ion-icon name="unlock"></ion-icon></button>\n                    </ion-item-options>\n                  <ion-item>\n\n                    <ion-grid>\n                      <ion-row>\n                        <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>\n                          <ion-icon class="float-left" name="arrow-back"></ion-icon>\n                        </ion-col>\n\n                        <ion-col col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6>\n                            <div class="check text-center">\n                                <img *ngIf="this.devices.securitySystem.getSecuritySystemStatus();" class="cls" src="assets/img/check.png" alt="arm icon" />\n                                <img *ngIf="!this.devices.securitySystem.getSecuritySystemStatus();" class="cls" src="assets/img/uncheck.png" alt="disarm icon" />\n                            </div>\n                        </ion-col>\n\n                        <ion-col col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3>\n                            <ion-icon class="float-right" name="arrow-forward"></ion-icon>\n                        </ion-col>\n\n                        </ion-row>\n                      </ion-grid>\n\n                  </ion-item>\n                  <ion-item-options side="right">\n                    <button class="fit-right" ion-button color="success" (click)="arm()">Arm <ion-icon name="key"></ion-icon></button>\n                  </ion-item-options>\n                </ion-item-sliding>\n\n              <ion-grid>\n                  <ion-row class="no-margin-top" col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12>\n                    <ion-col class="text-center">\n                      <h3 ion-text><strong>{{this.devices.securitySystem.getSecuritySystemStatusHumanReadable()}}</strong></h3>\n                    </ion-col>\n                  </ion-row>\n                  <ion-row>\n                    <ion-col col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6>\n                      <div class="text-center status">\n                        \n                        \n                        <p ion-text>Security Devices</p>\n                        <span *ngIf="this.devices.securitySystem.getSecuritySystemStatus()"> <ion-icon class="clui" color="primary" name="lock"></ion-icon> Locked</span>\n                        <span *ngIf="!this.devices.securitySystem.getSecuritySystemStatus()"> <ion-icon class="clui" color="danger" name="unlock"></ion-icon> Unlocked</span>\n                      \n                      </div>\n                    </ion-col>\n                    <ion-col col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6>\n                      <div class="text-center">\n                        <p ion-text>Garage Door</p>\n                        <button *ngIf="this.devices.securitySystem.getGarageDoorsStatus()" ion-button round (click)="closeGarageDoors()"> {{this.devices.securitySystem.getGarageDoorsStatusHumanReadable()}} <ion-icon class="clui" name="home"></ion-icon></button>\n                        <button *ngIf="!this.devices.securitySystem.getGarageDoorsStatus()" ion-button round (click)="openGarageDoors()" color="danger" > {{this.devices.securitySystem.getGarageDoorsStatusHumanReadable()}} <ion-icon class="clui" name="home"></ion-icon></button>\n                      </div>\n                    </ion-col>\n                  </ion-row>\n                </ion-grid>\n\n          </ion-list>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n'/*ion-inline-end:"/home/jovica/projects/IonicProjects/SmartHomeApp/src/pages/schedule/schedule.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */],
@@ -577,7 +583,7 @@ var SignupPage = (function () {
     };
     SignupPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-user',template:/*ion-inline-start:"/home/jovica/projects/IonicProjects/SmartHomeApp/src/pages/signup/signup.html"*/'<ion-header>\n	<ion-navbar>\n		<button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n		<ion-title>Signup</ion-title>\n	</ion-navbar>\n</ion-header>\n\n<ion-content class="login-page">\n\n	<div class="logo">\n		<img src="assets/img/appicon.svg" alt="Ionic Logo">\n	</div>\n\n	<form #signupForm="ngForm" novalidate>\n		<ion-list no-lines>\n			<ion-item>\n				<ion-label stacked color="primary">Username</ion-label>\n				<ion-input [(ngModel)]="signup.username" name="username" type="text" #username="ngModel" required>\n				</ion-input>\n			</ion-item>\n			<p ion-text [hidden]="username.valid || submitted == false" color="danger" padding-left>\n				Username is required\n			</p>\n\n			<ion-item>\n				<ion-label stacked color="primary">Password</ion-label>\n				<ion-input [(ngModel)]="signup.password" name="password" type="password" #password="ngModel" required>\n				</ion-input>\n			</ion-item>\n			<p ion-text [hidden]="password.valid || submitted == false" color="danger" padding-left>\n				Password is required\n			</p>\n			<ion-item>\n				<ion-label stacked color="primary">E-mail</ion-label>\n				<ion-input [(ngModel)]="signup.email" name="email" type="text" #email="ngModel" required>\n				</ion-input>\n			</ion-item>\n			<p ion-text [hidden]="username.valid || submitted == false" color="danger" padding-left>\n				E-mail is required\n			</p>\n		</ion-list>\n\n		<div padding>\n			<button ion-button (click)="onSignup(signupForm)" type="submit" block>Create</button>\n		</div>\n	</form>\n\n</ion-content>\n'/*ion-inline-end:"/home/jovica/projects/IonicProjects/SmartHomeApp/src/pages/signup/signup.html"*/
+            selector: 'page-user',template:/*ion-inline-start:"/home/jovica/projects/IonicProjects/SmartHomeApp/src/pages/signup/signup.html"*/'<ion-header>\n	<ion-navbar>\n		<button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n		<ion-title>Signup</ion-title>\n	</ion-navbar>\n</ion-header>\n\n<ion-content class="login-page">\n\n	<div class="logo">\n		<img src="assets/img/appicon.svg" alt="Ionic Logo">\n	</div>\n\n	<form #signupForm="ngForm" novalidate>\n		<ion-list no-lines>\n			<ion-item>\n				<ion-label floating color="primary">Username</ion-label>\n				<ion-input [(ngModel)]="signup.username" name="username" type="text" #username="ngModel" required>\n				</ion-input>\n			</ion-item>\n			<p ion-text [hidden]="username.valid || submitted == false" color="danger" padding-left>\n				Username is required\n			</p>\n\n			<ion-item>\n				<ion-label floating color="primary">Password</ion-label>\n				<ion-input [(ngModel)]="signup.password" name="password" type="password" #password="ngModel" required>\n				</ion-input>\n			</ion-item>\n			<p ion-text [hidden]="password.valid || submitted == false" color="danger" padding-left>\n				Password is required\n			</p>\n			<ion-item>\n				<ion-label floating color="primary">E-mail</ion-label>\n				<ion-input [(ngModel)]="signup.email" name="email" type="text" #email="ngModel" required>\n				</ion-input>\n			</ion-item>\n			<p ion-text [hidden]="username.valid || submitted == false" color="danger" padding-left>\n				E-mail is required\n			</p>\n		</ion-list>\n\n		<div padding>\n			<button ion-button (click)="onSignup(signupForm)" type="submit" block>Create</button>\n		</div>\n	</form>\n\n</ion-content>\n'/*ion-inline-end:"/home/jovica/projects/IonicProjects/SmartHomeApp/src/pages/signup/signup.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */], __WEBPACK_IMPORTED_MODULE_2__providers_user_data__["a" /* UserData */]])
     ], SignupPage);
@@ -1552,7 +1558,7 @@ var SecuritySystem = (function () {
     //default constructor
     function SecuritySystem() {
         this.SecuritySystemServices = true;
-        this.GarageDoors = false;
+        this.GarageDoors = 'false';
     }
     SecuritySystem.prototype.getSecuritySystemStatus = function () {
         return this.SecuritySystemServices;
@@ -1575,6 +1581,9 @@ var SecuritySystem = (function () {
     };
     SecuritySystem.prototype.getGarageDoorsStatus = function () {
         return this.GarageDoors;
+    };
+    SecuritySystem.prototype.setGarageDoorsStatus = function (doorStatus) {
+        this.GarageDoors = doorStatus;
     };
     SecuritySystem.prototype.getGarageDoorsStatusHumanReadable = function () {
         var garageDoorsStatus;
@@ -1676,7 +1685,7 @@ var Devices = (function () {
                 "DeviceName": "Garage door",
                 //"profilePic": "assets/img/speakers/duck.jpg",
                 "about": "garage door sensor",
-                "status": "false",
+                "status": false,
                 "category": __WEBPACK_IMPORTED_MODULE_1__models_device__["c" /* categories */].DoorDevices.toString()
             },
             {
@@ -1760,7 +1769,7 @@ var Devices = (function () {
             //change status for that category
             this.items.forEach(function (item) {
                 if (item.category.match("Door Devices")) {
-                    item.status = "true";
+                    item.status = true;
                 }
             });
             this.securitySystem.OpenCloseGarageDoors(true);
@@ -1770,7 +1779,7 @@ var Devices = (function () {
             //change status for that category
             this.items.forEach(function (item) {
                 if (item.category.match("Door Devices")) {
-                    item.status = "false";
+                    item.status = false;
                 }
             });
             this.securitySystem.OpenCloseGarageDoors(false);
